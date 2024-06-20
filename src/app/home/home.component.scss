@@ -1,0 +1,25 @@
+.home-body {
+ @apply mx-auto mt-40 flex justify-center py-10 bg-slate-200
+}
+
+.home-style {
+ @apply grid grid-rows-2 gap-12
+}
+
+.label-style {
+ @apply flex justify-center
+}
+
+.label-text {
+ @apply text-4xl font-bold
+}
+
+.search-style {
+ @apply flex justify-center
+}
+
+.search-box {
+ @apply border-black border-2 rounded-full py-5 px-7 text-2xl w-[40rem] font-semibold
+}
+
+

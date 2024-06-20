@@ -1,3 +1,7 @@
 .nav-button {
-  @apply py-1 px-3 border border-black rounded-full
+  @apply py-2 px-4 border-2 bg-purple-800 rounded-full hover:bg-purple-900
+}
+
+.button-text {
+  @apply font-bold text-xl text-white
 }
