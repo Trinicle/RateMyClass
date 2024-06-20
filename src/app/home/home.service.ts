@@ -6,8 +6,4 @@ import { Injectable } from '@angular/core';
 export class HomeService {
 
   constructor() { }
-
-  searchSchool(text: string) {
-    throw new Error('Method not implemented.');
-  }
 }

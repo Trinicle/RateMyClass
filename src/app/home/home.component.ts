@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { HomeSearchBox } from './home.model';
 import { HomeService } from './home.service';
+import { UniversitySearchService } from '../shared/university-search/university-search.service';
+import { FormControl, FormGroup } from '@angular/forms';
+import { debounceTime, startWith, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -8,17 +10,31 @@ import { HomeService } from './home.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  inputText: HomeSearchBox = { text: '' }
+  universityForm = new FormGroup({
+    university: new FormControl(''),
+  });
 
-  constructor(private homeService: HomeService) { }
+  constructor(
+    private homeService: HomeService,
+    private universtySearchService: UniversitySearchService,
+  ) { }
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.universtySearchService.get().subscribe();
+
+    this.universityForm.valueChanges
+      .pipe(
+        debounceTime(350),
+        startWith({
+          university: '',
+        }),
+        switchMap(({ university }) =>
+          this.universtySearchService.get(university ?? ''),
+        ),
+      )
+      .subscribe();
   }
 
   ngOnDestroy(): void { }
 
-  searchSchool() {
-    this.homeService.searchSchool(this.inputText.text)
-  }
 }

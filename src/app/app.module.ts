@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +13,8 @@ import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { HomeNavbarComponent } from './navbar/home-navbar/home-navbar.component';
 import { GeneralNavbarComponent } from './navbar/general-navbar/general-navbar.component';
+import { UniversitySearchService } from './shared/university-search/university-search.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -24,13 +26,14 @@ import { GeneralNavbarComponent } from './navbar/general-navbar/general-navbar.c
     SignupComponent,
     HomeComponent,
     HomeNavbarComponent,
-    GeneralNavbarComponent
+    GeneralNavbarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     SharedModule,
-    FormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

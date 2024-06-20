@@ -7,7 +7,14 @@
       <p class="label-text">Enter your school</p>
     </div>
     <div class="search-style">
-      <input name="school-text" class="search-box" placeholder="Your School" [(ngModel)]="inputText.text" type="text" />
+      <form [formGroup]="universityForm">
+        <input
+          formControlName="school-text"
+          type="text"
+          class="search-box"
+          placeholder="Your School"
+        />
+      </form>
     </div>
   </div>
 </div>
