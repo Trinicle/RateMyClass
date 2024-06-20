@@ -1,0 +1,11 @@
+.search-box {
+  @apply shadow-lg rounded-full py-5 px-7 text-2xl w-[40rem] font-semibold focus:outline-none
+ }
+
+.focused-search-box {
+  @apply rounded-t-[36px] rounded-b-none
+}
+
+.focused-list-box {
+  @apply rounded-b-[36px] rounded-t-none
+}

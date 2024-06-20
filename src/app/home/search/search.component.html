@@ -1,0 +1,14 @@
+<form [formGroup]="universityForm">
+  <input
+    formControlName="university"
+    type="text"
+    class="search-box"
+    [class.focused-search-box]="isInputFocused"
+    placeholder="Your School"
+    (focus)="toggleInputFocused()"
+    (blur)="toggleInputFocused()"
+  />
+  <div *ngIf="isInputFocused">
+    hello
+  </div>
+</form>

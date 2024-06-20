@@ -3,6 +3,7 @@ import { HomeService } from './home.service';
 import { UniversitySearchService } from '../shared/university-search/university-search.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { debounceTime, startWith, switchMap } from 'rxjs';
+import { University } from '../shared/university-search/university.model';
 
 @Component({
   selector: 'app-home',
@@ -10,30 +11,13 @@ import { debounceTime, startWith, switchMap } from 'rxjs';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  universityForm = new FormGroup({
-    university: new FormControl(''),
-  });
+
 
   constructor(
     private homeService: HomeService,
-    private universtySearchService: UniversitySearchService,
   ) { }
 
-  ngOnInit(): void {
-    this.universtySearchService.get().subscribe();
-
-    this.universityForm.valueChanges
-      .pipe(
-        debounceTime(350),
-        startWith({
-          university: '',
-        }),
-        switchMap(({ university }) =>
-          this.universtySearchService.get(university ?? ''),
-        ),
-      )
-      .subscribe();
-  }
+  ngOnInit(): void { }
 
   ngOnDestroy(): void { }
 

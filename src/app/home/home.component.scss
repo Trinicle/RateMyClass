@@ -3,11 +3,11 @@
 }
 
 .home-style {
- @apply grid grid-rows-2 gap-12
+ @apply flex flex-col
 }
 
 .label-style {
- @apply flex justify-center
+ @apply flex justify-center mb-16
 }
 
 .label-text {
@@ -16,10 +16,6 @@
 
 .search-style {
  @apply flex justify-center
-}
-
-.search-box {
- @apply border-black border-2 rounded-full py-5 px-7 text-2xl w-[40rem] font-semibold
 }
 
 
