@@ -8,6 +8,8 @@ import { UnversityComponent } from './unversity/unversity.component';
 
 import { SharedModule } from './shared/shared.module';
 import { NavbarModule } from './navbar/navbar.module';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 
 @NgModule({
@@ -15,7 +17,8 @@ import { NavbarModule } from './navbar/navbar.module';
     AppComponent,
     ClassComponent,
     UnversityComponent,
-
+    LoginComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,

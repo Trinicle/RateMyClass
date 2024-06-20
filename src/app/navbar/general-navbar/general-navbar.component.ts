@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-general-navbar',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./general-navbar.component.scss']
 })
 export class GeneralNavbarComponent {
+  classNameControl = new FormControl('');
+  
 
 }
