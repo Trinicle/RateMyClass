@@ -3,9 +3,13 @@
  }
 
 .focused-search-box {
-  @apply rounded-t-[36px] rounded-b-none
+  @apply rounded-t-[36px] rounded-b-none shadow-none
 }
 
-.focused-list-box {
-  @apply rounded-b-[36px] rounded-t-none
+.item-box {
+  @apply bg-white py-5 px-7 text-lg font-bold
+}
+
+.last-item {
+  @apply rounded-b-[36px]
 }

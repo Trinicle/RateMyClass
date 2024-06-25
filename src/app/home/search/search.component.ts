@@ -1,8 +1,8 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { debounceTime, startWith, switchMap } from 'rxjs';
-import { UniversitySearchService } from 'src/app/shared/university-search/university-search.service';
-import { University } from 'src/app/shared/university-search/university.model';
+import { SearchService } from './state/search.service';
+import { GetMupltipleResponse, University } from './state/search.model';
 
 @Component({
   selector: 'home-search',
@@ -10,17 +10,20 @@ import { University } from 'src/app/shared/university-search/university.model';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit, OnDestroy {
+  @ViewChild('containerElement', { static: true })
+  containerElement!: ElementRef;
+
   universityForm = new FormGroup({
     university: new FormControl(''),
   });
   universities: University[] = [];
   isInputFocused: boolean = false;
 
-  constructor(private universtySearchService: UniversitySearchService) { }
+  constructor(
+    private searchService: SearchService,
+    private elementRef: ElementRef) { }
 
   ngOnInit(): void {
-    this.universtySearchService.get().subscribe();
-
     this.universityForm.valueChanges
       .pipe(
         debounceTime(350),
@@ -28,19 +31,37 @@ export class SearchComponent implements OnInit, OnDestroy {
           university: '',
         }),
         switchMap(({ university }) =>
-          this.universtySearchService.get(university ?? ''),
+          this.searchService.get(university ?? '', 4),
         ),
       )
-      .subscribe((results: University[]) => {
-        this.universities = results;
-        console.log(this.universities);
+      .subscribe((response: GetMupltipleResponse) => {
+        console.log(response);
+        this.universities = response.result;
       });
   }
 
   ngOnDestroy(): void {
   }
 
+  @HostListener('document:click', ['$event'])
+  onClick(event: MouseEvent) {
+    if(!this.containerElement.nativeElement.contains(event.target)) {
+      this.isInputFocused = false;
+    } else {
+      this.isInputFocused = true;
+    }
+    console.log(this.isInputFocused);
+  }
+
   toggleInputFocused() {
     this.isInputFocused = !this.isInputFocused;
   }
+
+  // goToLink(url: string) {
+  //   if(!url.includes("https://")) {
+  //     window.open(`https://${url}`, "_blank")
+  //   } else {
+  //     window.open(url, "_blank");
+  //   }
+  // }
 }

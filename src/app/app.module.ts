@@ -4,8 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ClassComponent } from './class/class.component';
-import { UnversityComponent } from './unversity/unversity.component';
 
 import { SharedModule } from './shared/shared.module';
 import { LoginComponent } from './login/login.component';
@@ -21,8 +19,6 @@ import { SearchComponent } from './home/search/search.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ClassComponent,
-    UnversityComponent,
     LoginComponent,
     SignupComponent,
     HomeComponent,

@@ -1,14 +1,21 @@
-<form [formGroup]="universityForm">
+<form
+  [formGroup]="universityForm"
+  #containerElement
+  >
   <input
     formControlName="university"
     type="text"
     class="search-box"
-    [class.focused-search-box]="isInputFocused"
+    [ngClass]="universities.length > 0 && isInputFocused ? 'focused-search-box' : ''"
     placeholder="Your School"
-    (focus)="toggleInputFocused()"
-    (blur)="toggleInputFocused()"
   />
-  <div *ngIf="isInputFocused">
-    hello
+  <div *ngFor="let university of universities; let lastItem = last">
+    <div
+      *ngIf="isInputFocused"
+      class="item-box"
+      [ngClass]="lastItem ? 'last-item shadow-lg' : ''">
+      <a [routerLink]="['/university', university.id]">{{university.name}}</a>
+    </div>
   </div>
+
 </form>
