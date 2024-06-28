@@ -5,10 +5,11 @@
       <div class="bg-slate-200 rounded-l-xl">
         <div class="p-2">
           <div>
-            {{university.name}}
+            {{ university.name }}
           </div>
           <div>
-            {{university.address}} {{university.city}}, {{university.state}} {{university.zip}}
+            {{ university.address }} {{ university.city }},
+            {{ university.state }} {{ university.zip }}
           </div>
         </div>
       </div>
@@ -17,9 +18,7 @@
           <div class="flex float-end">
             <p class="font-bold text-7xl">23</p>
           </div>
-          <div>
-            Quality Based on {{courseList.courses.length}} results
-          </div>
+          <div>Quality Based on {{ courseList.courses.length }} results</div>
           <university-chart></university-chart>
         </div>
       </div>

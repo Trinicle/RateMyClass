@@ -16,7 +16,6 @@ import { SearchComponent } from './home/search/search.component';
 import { UniversityComponent } from './university/university.component';
 import { ChartComponent } from './university/chart/chart.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,8 +26,10 @@ import { ChartComponent } from './university/chart/chart.component';
     GeneralNavbarComponent,
     SearchComponent,
     UniversityComponent,
-    ChartComponent
+    ChartComponent,
   ],
+  providers: [],
+  bootstrap: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -36,7 +37,5 @@ import { ChartComponent } from './university/chart/chart.component';
     SharedModule,
     ReactiveFormsModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
