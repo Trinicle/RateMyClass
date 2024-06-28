@@ -1,14 +1,32 @@
-import { Component, ElementRef, HostListener, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, startWith, switchMap } from 'rxjs';
 import { SearchService } from './state/search.service';
 import { GetMupltipleResponse } from '../../models/search.model';
 import { University } from '@app/models/university.model';
+import { RouterLink } from '@angular/router';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 
 @Component({
-  selector: 'home-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss']
+    selector: 'home-search',
+    templateUrl: './search.component.html',
+    styleUrls: ['./search.component.scss'],
+    standalone: true,
+    imports: [
+        ReactiveFormsModule,
+        NgClass,
+        NgFor,
+        NgIf,
+        RouterLink,
+    ],
 })
 export class SearchComponent implements OnInit, OnDestroy {
   @ViewChild('containerElement', { static: true })
@@ -22,7 +40,8 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   constructor(
     private searchService: SearchService,
-    private elementRef: ElementRef) { }
+    private elementRef: ElementRef
+  ) {}
 
   ngOnInit(): void {
     this.universityForm.valueChanges
@@ -32,8 +51,8 @@ export class SearchComponent implements OnInit, OnDestroy {
           university: '',
         }),
         switchMap(({ university }) =>
-          this.searchService.get(university ?? '', 4),
-        ),
+          this.searchService.get(university ?? '', 4)
+        )
       )
       .subscribe((response: GetMupltipleResponse<University>) => {
         console.log(response);
@@ -45,7 +64,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   @HostListener('document:click', ['$event'])
   onClick(event: MouseEvent) {
-    if(!this.containerElement.nativeElement.contains(event.target)) {
+    if (!this.containerElement.nativeElement.contains(event.target)) {
       this.isInputFocused = false;
     } else {
       this.isInputFocused = true;

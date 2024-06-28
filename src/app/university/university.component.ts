@@ -3,11 +3,15 @@ import { UniversityService } from './university.service';
 import { University, emptyUniversity } from '@app/models/university.model';
 import { CourseList, emptyCourseList } from '@app/models/course.model';
 import { ActivatedRoute } from '@angular/router';
+import { ChartComponent } from './chart/chart.component';
+import { GeneralNavbarComponent } from '../navbar/general-navbar/general-navbar.component';
 
 @Component({
-  selector: 'app-university',
-  templateUrl: './university.component.html',
-  styleUrls: ['./university.component.scss'],
+    selector: 'app-university',
+    templateUrl: './university.component.html',
+    styleUrls: ['./university.component.scss'],
+    standalone: true,
+    imports: [GeneralNavbarComponent, ChartComponent],
 })
 export class UniversityComponent implements OnInit, OnDestroy {
   id: number = 0;
