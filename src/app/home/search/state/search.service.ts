@@ -1,37 +1,38 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EMPTY, Observable, catchError, map, of, throwError } from 'rxjs';
-import { GetMupltipleResponse } from './search.model';
+import { GetMupltipleResponse } from '../../../models/search.model';
+import { University } from '@app/models/university.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SearchService {
-  private url: string = 'http://localhost:5000/api/universities'
+  private url: string = 'http://localhost:5000/api/universities';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   get(university: string = '', amount: number = 0) {
     if (!university) {
       return of({ count: 0, result: [] });
     }
-    return this.http.get<GetMupltipleResponse>(
-      `${this.url}`.concat(
-        `?name=${encodeURIComponent(university)}`,
-        amount !== 0 ? `&amount=${amount}` : ``
-      ),
-      { observe: 'response' }
-    )
+    return this.http
+      .get<GetMupltipleResponse<University>>(
+        `${this.url}`.concat(
+          `?name=${encodeURIComponent(university)}`,
+          amount !== 0 ? `&amount=${amount}` : ``
+        ),
+        { observe: 'response' }
+      )
       .pipe(
         map((response) => response.body || { count: 0, result: [] }),
         catchError((error: HttpErrorResponse) => {
-          if(error.status === 404) {
-
+          if (error.status === 404) {
             return of({ count: 0, result: [] });
           } else {
             return throwError(() => error);
           }
         })
-      )
+      );
   }
 }

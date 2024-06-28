@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-home-navbar',
+  selector: 'home-navbar',
   templateUrl: './home-navbar.component.html',
   styleUrls: ['./home-navbar.component.scss']
 })

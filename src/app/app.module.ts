@@ -11,9 +11,9 @@ import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { HomeNavbarComponent } from './navbar/home-navbar/home-navbar.component';
 import { GeneralNavbarComponent } from './navbar/general-navbar/general-navbar.component';
-import { UniversitySearchService } from './shared/university-search/university-search.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchComponent } from './home/search/search.component';
+import { UniversityComponent } from './university/university.component';
 
 
 @NgModule({
@@ -25,6 +25,7 @@ import { SearchComponent } from './home/search/search.component';
     HomeNavbarComponent,
     GeneralNavbarComponent,
     SearchComponent,
+    UniversityComponent
   ],
   imports: [
     BrowserModule,

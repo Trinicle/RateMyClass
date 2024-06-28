@@ -2,7 +2,8 @@ import { Component, ElementRef, HostListener, Input, OnDestroy, OnInit, ViewChil
 import { FormGroup, FormControl } from '@angular/forms';
 import { debounceTime, startWith, switchMap } from 'rxjs';
 import { SearchService } from './state/search.service';
-import { GetMupltipleResponse, University } from './state/search.model';
+import { GetMupltipleResponse } from '../../models/search.model';
+import { University } from '@app/models/university.model';
 
 @Component({
   selector: 'home-search',
@@ -34,14 +35,13 @@ export class SearchComponent implements OnInit, OnDestroy {
           this.searchService.get(university ?? '', 4),
         ),
       )
-      .subscribe((response: GetMupltipleResponse) => {
+      .subscribe((response: GetMupltipleResponse<University>) => {
         console.log(response);
         this.universities = response.result;
       });
   }
 
-  ngOnDestroy(): void {
-  }
+  ngOnDestroy(): void {}
 
   @HostListener('document:click', ['$event'])
   onClick(event: MouseEvent) {
@@ -50,18 +50,9 @@ export class SearchComponent implements OnInit, OnDestroy {
     } else {
       this.isInputFocused = true;
     }
-    console.log(this.isInputFocused);
   }
 
   toggleInputFocused() {
     this.isInputFocused = !this.isInputFocused;
   }
-
-  // goToLink(url: string) {
-  //   if(!url.includes("https://")) {
-  //     window.open(`https://${url}`, "_blank")
-  //   } else {
-  //     window.open(url, "_blank");
-  //   }
-  // }
 }
