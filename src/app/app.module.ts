@@ -15,6 +15,7 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { SearchComponent } from './home/search/search.component';
 import { UniversityComponent } from './university/university.component';
 import { ChartComponent } from './university/chart/chart.component';
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
 @NgModule({ declarations: [
         AppComponent,
@@ -30,5 +31,5 @@ import { ChartComponent } from './university/chart/chart.component';
     bootstrap: [AppComponent], imports: [BrowserModule,
         AppRoutingModule,
         SharedModule,
-        ReactiveFormsModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
+        ReactiveFormsModule], providers: [provideHttpClient(withInterceptorsFromDi()), provideCharts(withDefaultRegisterables())] })
 export class AppModule {}
