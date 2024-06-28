@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Chart, ChartOptions, ChartType, ChartDataset } from 'chart.js';
 import { ChartService } from './chart.service';
+import { BaseChartDirective } from 'ng2-charts';
 
 @Component({
+  standalone: true,
+  imports: [BaseChartDirective],
   selector: 'university-chart',
   templateUrl: './chart.component.html',
 })
