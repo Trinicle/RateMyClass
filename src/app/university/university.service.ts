@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { GetResponse } from '@app/models/search.model';
 import { UniversityWithCourses, emptyUniversitywithCourses } from '@app/models/university.model';
+import { CourseListQuery } from '@app/query/course-list.query';
 import { UniversityQuery } from '@app/query/university.query';
 import { CourseListStore } from '@app/stores/course-list.store';
 import { UniversityStore } from '@app/stores/university.store';
@@ -14,6 +15,7 @@ export class UniversityService {
   private url: string = 'http://localhost:5000/api/universities/'
   constructor(
     private courseListStore: CourseListStore,
+    private courseListQuery: CourseListQuery,
     private universityStore: UniversityStore,
     private universityQuery: UniversityQuery,
     private http: HttpClient
@@ -49,5 +51,9 @@ export class UniversityService {
 
   getUniversity() {
     return this.universityQuery.select()
+  }
+
+  getClasses() {
+    return this.courseListQuery.select();
   }
 }

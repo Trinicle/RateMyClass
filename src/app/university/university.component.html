@@ -1,2 +1,28 @@
 <general-navbar></general-navbar>
-<p>University works!</p>
+<div class="container mx-auto">
+  <div class="flex items-center justify-center">
+    <div class="grid grid-cols-2 border-2 border-black rounded-xl">
+      <div class="bg-slate-200 rounded-l-xl">
+        <div class="p-2">
+          <div>
+            {{university.name}}
+          </div>
+          <div>
+            {{university.address}} {{university.city}}, {{university.state}} {{university.zip}}
+          </div>
+        </div>
+      </div>
+      <div class="rounded-r-xl">
+        <div class="p-2">
+          <div class="flex float-end">
+            <p class="font-bold text-7xl">23</p>
+          </div>
+          <div>
+            Quality Based on {{courseList.courses.length}} results
+          </div>
+          <university-chart></university-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

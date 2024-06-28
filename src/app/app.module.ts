@@ -14,6 +14,7 @@ import { GeneralNavbarComponent } from './navbar/general-navbar/general-navbar.c
 import { HttpClientModule } from '@angular/common/http';
 import { SearchComponent } from './home/search/search.component';
 import { UniversityComponent } from './university/university.component';
+import { ChartComponent } from './university/chart/chart.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { UniversityComponent } from './university/university.component';
     HomeNavbarComponent,
     GeneralNavbarComponent,
     SearchComponent,
-    UniversityComponent
+    UniversityComponent,
+    ChartComponent
   ],
   imports: [
     BrowserModule,
