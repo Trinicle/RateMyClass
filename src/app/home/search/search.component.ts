@@ -2,7 +2,6 @@ import {
   Component,
   ElementRef,
   HostListener,
-  Input,
   OnDestroy,
   OnInit,
   ViewChild,
@@ -13,20 +12,18 @@ import { SearchService } from './state/search.service';
 import { GetMupltipleResponse } from '../../models/search.model';
 import { University } from '@app/models/university.model';
 import { RouterLink } from '@angular/router';
-import { NgClass, NgFor, NgIf } from '@angular/common';
+import { CommonModule, NgClass, NgFor, NgIf } from '@angular/common';
 
 @Component({
-    selector: 'home-search',
-    templateUrl: './search.component.html',
-    styleUrls: ['./search.component.scss'],
-    standalone: true,
-    imports: [
-        ReactiveFormsModule,
-        NgClass,
-        NgFor,
-        NgIf,
-        RouterLink,
-    ],
+  selector: 'home-search',
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.scss'],
+  standalone: true,
+  imports: [
+    ReactiveFormsModule,
+    CommonModule,
+    RouterLink,
+  ],
 })
 export class SearchComponent implements OnInit, OnDestroy {
   @ViewChild('containerElement', { static: true })
@@ -40,8 +37,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   constructor(
     private searchService: SearchService,
-    private elementRef: ElementRef
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.universityForm.valueChanges
@@ -60,7 +56,7 @@ export class SearchComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void { }
 
   @HostListener('document:click', ['$event'])
   onClick(event: MouseEvent) {

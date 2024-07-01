@@ -5,7 +5,13 @@ import { Query } from '@datorama/akita';
 
 @Injectable({ providedIn: 'root' })
 export class CourseListQuery extends Query<CourseList> {
+  courseList$ = this.select();
+
   constructor(protected override store: CourseListStore) {
     super(store);
+  }
+
+  selectCourseList() {
+    return this.courseList$;
   }
 }

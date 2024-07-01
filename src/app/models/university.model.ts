@@ -1,27 +1,31 @@
 import { Course } from "./course.model"
+import { UniversityRating } from "./university-rating.model"
 
 export interface University {
-  id: number,
-  name: string,
-  address: string,
-  city: string,
-  state: string,
-  zip: string,
-  website: string,
+  id: number;
+  name: string;
+  address: string;
+  city: string;
+  state: string;
+  zip: string;
+  website: string;
 }
 
-export interface UniversityWithCourses {
-  id: number,
-  name: string,
-  address: string,
-  city: string,
-  state: string,
-  zip: string,
-  website: string,
-  courses: Course[]
+export interface UniversityWithLists {
+  id: number;
+  name: string;
+  address: string;
+  city: string;
+  state: string;
+  zip: string;
+  website: string;
+  numberOfCourses: number;
+  numberOfRatings: number;
+  courses: Course[];
+  ratings: UniversityRating[];
 }
 
-export const emptyUniversitywithCourses = {
+export const emptyUniversitywithLists = {
   id: 0,
   name: '',
   address: '',
@@ -29,8 +33,11 @@ export const emptyUniversitywithCourses = {
   state: '',
   zip: '',
   website: '',
-  courses: [] as Course[]
-}
+  numberOfCourses: 0,
+  numberOfRatings: 0,
+  courses: [] as Course[],
+  ratings: [] as UniversityRating[]
+} as UniversityWithLists
 
 export const emptyUniversity = {
   id: 0,

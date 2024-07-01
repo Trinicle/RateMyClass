@@ -4,7 +4,8 @@ export interface Course {
 }
 
 export interface CourseList {
-  courses: Course[]
+  numberOfCourses: number;
+  courses: Course[];
 }
 
 export const emptyCourse = {
@@ -13,5 +14,6 @@ export const emptyCourse = {
 }
 
 export const emptyCourseList = {
+  numberOfCourses: 0,
   courses: [] as Course[]
-}
+} as CourseList

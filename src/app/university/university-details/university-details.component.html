@@ -1,0 +1,11 @@
+@if (university$ | async; as university) {
+<div class="text-gray-400 text-sm">
+  <p>
+    {{ university.address }} {{ university.city }}, {{ university.state }}
+    {{ university.zip }}
+  </p>
+</div>
+<div class="font-extrabold text-3xl">
+  <p>{{ university.name }}</p>
+</div>
+}

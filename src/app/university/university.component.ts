@@ -5,36 +5,35 @@ import { CourseList, emptyCourseList } from '@app/models/course.model';
 import { ActivatedRoute } from '@angular/router';
 import { ChartComponent } from './chart/chart.component';
 import { GeneralNavbarComponent } from '../navbar/general-navbar/general-navbar.component';
+import { UniversityRatingList, emptyUniversityRatingList } from '@app/models/university-rating.model';
+import { UniversityDetailsComponent } from "./university-details/university-details.component";
+import { RatingCardComponent } from "./rating-card/rating-card.component";
+import { of } from 'rxjs';
+import { UniversityQuery } from '@app/query/university.query';
 
 @Component({
-    selector: 'app-university',
-    templateUrl: './university.component.html',
-    styleUrls: ['./university.component.scss'],
-    standalone: true,
-    imports: [GeneralNavbarComponent, ChartComponent],
+  selector: 'app-university',
+  templateUrl: './university.component.html',
+  styleUrls: ['./university.component.scss'],
+  standalone: true,
+  imports: [GeneralNavbarComponent, ChartComponent, UniversityDetailsComponent, RatingCardComponent]
 })
 export class UniversityComponent implements OnInit, OnDestroy {
   id: number = 0;
-  university: University = emptyUniversity
-  courseList: CourseList = emptyCourseList
+  courseList$ = of(emptyCourseList);
 
   constructor(
     private route: ActivatedRoute,
-    private universityService: UniversityService
-  ) {}
+    private universityService: UniversityService,
+    private universityQuery: UniversityQuery
+  ) { }
 
   ngOnInit(): void {
     this.universityService.reset();
     this.id = +(this.route.snapshot.paramMap.get('id') ?? 0);
 
-    this.universityService.updateUniversity(this.id);
-    this.universityService.getUniversity().subscribe(data => {
-      this.university = data;
-    })
-    this.universityService.getClasses().subscribe(data => {
-      this.courseList = data;
-    })
+    this.universityService.getUniversityDetails(this.id);
   }
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void { }
 }

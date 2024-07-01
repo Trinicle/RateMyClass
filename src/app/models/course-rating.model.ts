@@ -1,4 +1,4 @@
-export interface Rating {
+export interface CourseRating {
   id: number;
   description: string;
   quality: number;
@@ -7,11 +7,11 @@ export interface Rating {
   date: Date;
 }
 
-export interface RatingList {
-  ratings: Rating[];
+export interface CourseRatingList {
+  ratings: CourseRating[];
 }
 
-export const emptyCourse = {
+export const emptyCourseRating = {
   id: 0,
   description: '',
   quality: 0,
@@ -20,6 +20,6 @@ export const emptyCourse = {
   date: Date.now(),
 };
 
-export const emptyRatingList = {
-  ratings: [] as Rating[],
+export const emptyCourseRatingList = {
+  ratings: [] as CourseRating[],
 };

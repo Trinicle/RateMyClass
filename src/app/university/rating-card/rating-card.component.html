@@ -1,0 +1,60 @@
+@if (ratings$ | async; as ratings) { @for (rating of ratings; track $index) {
+<div class="bg-slate-100 mb-6 rounded-xl font-[arial]">
+  <div class="p-6">
+    <div class="grid grid-cols-[1.5fr_8.5fr] gap-4">
+      <div class="flex flex-col items-center">
+        <div class="font-bold mb-3">Overall</div>
+        <div
+          class="poppins-black text-3xl h-[72px] w-[72px] flex items-center justify-center rounded-lg"
+          [ngStyle]="{
+            'background-color':
+              'hsl(' + averageColor(rating) + ', 100%, 50%, .8)'
+          }"
+        >
+          {{ average(rating) }}
+        </div>
+      </div>
+      <div class="p-4 pt-0 flex flex-col">
+        <div class="text-right font-bold mb-3 text-sm">
+          {{ rating.date | dateFormat }}
+        </div>
+        <div class="mb-4">{{ rating.description }}</div>
+        <div class="grid grid-cols-2 gap-4 font-bold">
+          <div class="grid grid-cols-2">
+            <div>
+              <div>Quality</div>
+              <div>Location</div>
+              <div>Opportunities</div>
+              <div>Facilities</div>
+              <div>Internet</div>
+            </div>
+            <div>
+              <div>{{ rating.quality }}</div>
+              <div>{{ rating.location }}</div>
+              <div>{{ rating.opportunities }}</div>
+              <div>{{ rating.facilities }}</div>
+              <div>{{ rating.internet }}</div>
+            </div>
+          </div>
+          <div class="grid grid-cols-2">
+            <div>
+              <div>Food</div>
+              <div>Clubs</div>
+              <div>Social</div>
+              <div>Happiness</div>
+              <div>Safety</div>
+            </div>
+            <div>
+              <div>{{ rating.food }}</div>
+              <div>{{ rating.clubs }}</div>
+              <div>{{ rating.social }}</div>
+              <div>{{ rating.happiness }}</div>
+              <div>{{ rating.safety }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+} }

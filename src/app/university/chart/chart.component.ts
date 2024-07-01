@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { RatingListQuery } from '@app/query/rating-list.query';
-import { RatingListStore } from '@app/stores/rating-list.store';
-import { UniversityStore } from '@app/stores/university.store';
-import { ChartConfiguration, ChartData, ChartEvent } from 'chart.js';
+import { ChartConfiguration, ChartData, ChartDataset, ChartEvent } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
+import { from, map, mergeMap, reduce } from 'rxjs';
+import { UniversityService } from '../university.service';
+import { UniversityRatingListQuery } from '@app/query/university-rating-list.query';
 
 @Component({
   selector: 'university-chart',
@@ -15,44 +15,74 @@ import { BaseChartDirective } from 'ng2-charts';
 export class ChartComponent implements OnInit {
   @ViewChild(BaseChartDirective) chart: BaseChartDirective<'bar'> | undefined;
 
-  average: number = 0;
+  barChartType = 'bar' as const
+  chartData: number[] = [];
+  chartDataColor: string[] = [];
+  totalRatings: number = 1;
+  constructor(private ratingListQuery: UniversityRatingListQuery) { }
 
-  constructor(private ratingListStore: RatingListQuery) {}
-
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.ratingListQuery.getAverageList().subscribe(dataArray => {
+      this.chartData = dataArray;
+      this.chartDataColor = [];
+      for (const item of this.chartData) {
+        if (Number.isNaN(item)) {
+          this.chartDataColor.push(`rgba(255, 255, 255, .8)`)
+        } else {
+          var hue = (item - 1) / 4 * 120
+          this.chartDataColor.push(`hsl(${hue}, 100%, 50%, .8)`)
+        }
+      }
+      this.barChartData.datasets[0].data = this.chartData;
+      this.barChartData.datasets[0].backgroundColor = this.chartDataColor;
+      this.chart?.update();
+    });
+  }
 
   public barChartOptions: ChartConfiguration<'bar'>['options'] = {
     scales: {
-      x: { min: 0, max: 5 },
-      y: {},
+      x: {
+        min: 0,
+        max: 5,
+        ticks: {
+          font: {
+            size: 12,
+            weight: 600
+          },
+          color: 'black'
+        }
+      },
+      y: {
+        ticks: {
+          font: {
+            size: 12,
+            weight: 600
+          },
+          color: 'black',
+        }
+      },
     },
     plugins: {
       legend: {
         display: false,
-        position: 'bottom',
       },
       title: {
         display: true,
-        text: 'Courses',
+        text: 'Ratings',
         color: 'black',
         font: {
-          size: 20,
+          size: 16,
+          weight: 800
         },
       },
     },
-    elements: {
-      bar: {
-        borderWidth: 2,
-        backgroundColor: 'black',
-      },
-    },
-    indexAxis: 'x',
+    indexAxis: 'y',
+    maintainAspectRatio: false,
   };
-  public barChartType = 'bar' as const;
 
   public barChartData: ChartData<'bar'> = {
-    xLabels: ['Quality', 'Difficulty'],
-    datasets: [{ data: [1, 4] }],
+    yLabels: ['Quality', 'Location', 'Opportunities', 'Facilities', 'Internet', 'Food', 'Clubs', 'Social', 'Happiness', 'Safety'],
+    datasets: [{ data: this.chartData, backgroundColor: this.chartDataColor }],
   };
 
   public chartClicked({
@@ -61,7 +91,7 @@ export class ChartComponent implements OnInit {
   }: {
     event?: ChartEvent;
     active?: object[];
-  }): void {}
+  }): void { }
 
   public chartHovered({
     event,
@@ -69,5 +99,5 @@ export class ChartComponent implements OnInit {
   }: {
     event?: ChartEvent;
     active?: object[];
-  }): void {}
+  }): void { }
 }
