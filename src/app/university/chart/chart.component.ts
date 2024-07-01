@@ -1,5 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ChartConfiguration, ChartData, ChartDataset, ChartEvent } from 'chart.js';
+import {
+  ChartConfiguration,
+  ChartData,
+  ChartDataset,
+  ChartEvent,
+} from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { from, map, mergeMap, reduce } from 'rxjs';
 import { UniversityService } from '../university.service';
@@ -15,22 +20,22 @@ import { UniversityRatingListQuery } from '@app/query/university-rating-list.que
 export class ChartComponent implements OnInit {
   @ViewChild(BaseChartDirective) chart: BaseChartDirective<'bar'> | undefined;
 
-  barChartType = 'bar' as const
+  barChartType = 'bar' as const;
   chartData: number[] = [];
   chartDataColor: string[] = [];
   totalRatings: number = 1;
-  constructor(private ratingListQuery: UniversityRatingListQuery) { }
+  constructor(private ratingListQuery: UniversityRatingListQuery) {}
 
   ngOnInit(): void {
-    this.ratingListQuery.getAverageList().subscribe(dataArray => {
+    this.ratingListQuery.getAverageList().subscribe((dataArray) => {
       this.chartData = dataArray;
       this.chartDataColor = [];
       for (const item of this.chartData) {
         if (Number.isNaN(item)) {
-          this.chartDataColor.push(`rgba(255, 255, 255, .8)`)
+          this.chartDataColor.push(`rgba(255, 255, 255, .8)`);
         } else {
-          var hue = (item - 1) / 4 * 120
-          this.chartDataColor.push(`hsl(${hue}, 100%, 50%, .8)`)
+          var hue = ((item - 1) / 4) * 120;
+          this.chartDataColor.push(`hsl(${hue}, 100%, 50%, .8)`);
         }
       }
       this.barChartData.datasets[0].data = this.chartData;
@@ -47,19 +52,19 @@ export class ChartComponent implements OnInit {
         ticks: {
           font: {
             size: 12,
-            weight: 600
+            weight: 600,
           },
-          color: 'black'
-        }
+          color: 'black',
+        },
       },
       y: {
         ticks: {
           font: {
             size: 12,
-            weight: 600
+            weight: 600,
           },
           color: 'black',
-        }
+        },
       },
     },
     plugins: {
@@ -72,7 +77,7 @@ export class ChartComponent implements OnInit {
         color: 'black',
         font: {
           size: 16,
-          weight: 800
+          weight: 800,
         },
       },
     },
@@ -81,7 +86,18 @@ export class ChartComponent implements OnInit {
   };
 
   public barChartData: ChartData<'bar'> = {
-    yLabels: ['Quality', 'Location', 'Opportunities', 'Facilities', 'Internet', 'Food', 'Clubs', 'Social', 'Happiness', 'Safety'],
+    yLabels: [
+      'Quality',
+      'Location',
+      'Opportunities',
+      'Facilities',
+      'Internet',
+      'Food',
+      'Clubs',
+      'Social',
+      'Happiness',
+      'Safety',
+    ],
     datasets: [{ data: this.chartData, backgroundColor: this.chartDataColor }],
   };
 
@@ -91,7 +107,7 @@ export class ChartComponent implements OnInit {
   }: {
     event?: ChartEvent;
     active?: object[];
-  }): void { }
+  }): void {}
 
   public chartHovered({
     event,
@@ -99,5 +115,5 @@ export class ChartComponent implements OnInit {
   }: {
     event?: ChartEvent;
     active?: object[];
-  }): void { }
+  }): void {}
 }

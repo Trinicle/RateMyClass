@@ -19,11 +19,7 @@ import { CommonModule, NgClass, NgFor, NgIf } from '@angular/common';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
   standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    CommonModule,
-    RouterLink,
-  ],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink],
 })
 export class SearchComponent implements OnInit, OnDestroy {
   @ViewChild('containerElement', { static: true })
@@ -35,9 +31,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   universities: University[] = [];
   isInputFocused: boolean = false;
 
-  constructor(
-    private searchService: SearchService,
-  ) { }
+  constructor(private searchService: SearchService) {}
 
   ngOnInit(): void {
     this.universityForm.valueChanges
@@ -51,12 +45,11 @@ export class SearchComponent implements OnInit, OnDestroy {
         )
       )
       .subscribe((response: GetMupltipleResponse<University>) => {
-        console.log(response);
         this.universities = response.result;
       });
   }
 
-  ngOnDestroy(): void { }
+  ngOnDestroy(): void {}
 
   @HostListener('document:click', ['$event'])
   onClick(event: MouseEvent) {

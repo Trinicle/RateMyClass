@@ -1,0 +1,31 @@
+<general-navbar></general-navbar>
+<form [formGroup]="addUniversityRatingForm">
+  @for (field of fields; track $index) {
+  <div class="flex">
+    @for (number of numbers; track $index; let first = $first, last = $last) {
+    <button
+      class="h-[32px] w-[46px] mr-[3px]"
+      [ngClass]="[
+        first ? 'rounded-l-full' : last ? 'rounded-r-full' : '',
+        number > get(field) ? ' bg-slate-300' : ''
+      ]"
+      [ngStyle]="
+        number > get(field)
+          ? {}
+          : {
+              'background-color':
+                'hsl(' +
+                getHue(field) +
+                ', 100%,' +
+                getSaturation(field) +
+                '%, 1)'
+            }
+      "
+      (click)="update(field, number)"
+      (mouseenter)="onEnter(field, number)"
+      (mouseleave)="onLeave(field)"
+    ></button>
+    }
+  </div>
+  }
+</form>

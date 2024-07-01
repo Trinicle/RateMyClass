@@ -8,7 +8,7 @@
           class="poppins-black text-3xl h-[72px] w-[72px] flex items-center justify-center rounded-lg"
           [ngStyle]="{
             'background-color':
-              'hsl(' + averageColor(rating) + ', 100%, 50%, .8)'
+              'hsl(' + averageColor(rating) + ', 100%, 70%, 1)'
           }"
         >
           {{ average(rating) }}
@@ -20,36 +20,36 @@
         </div>
         <div class="mb-4">{{ rating.description }}</div>
         <div class="grid grid-cols-2 gap-4 font-bold">
-          <div class="grid grid-cols-2">
+          <div class="grid grid-cols-[40%_60%]">
             <div>
-              <div>Quality</div>
-              <div>Location</div>
-              <div>Opportunities</div>
-              <div>Facilities</div>
-              <div>Internet</div>
+              <div class="mb-3">Quality</div>
+              <div class="mb-3">Location</div>
+              <div class="mb-3">Opportunities</div>
+              <div class="mb-3">Facilities</div>
+              <div class="mb-3">Internet</div>
             </div>
             <div>
-              <div>{{ rating.quality }}</div>
-              <div>{{ rating.location }}</div>
-              <div>{{ rating.opportunities }}</div>
-              <div>{{ rating.facilities }}</div>
-              <div>{{ rating.internet }}</div>
+              <rating-bar [value]="rating.quality"></rating-bar>
+              <rating-bar [value]="rating.location"></rating-bar>
+              <rating-bar [value]="rating.opportunities"></rating-bar>
+              <rating-bar [value]="rating.facilities"></rating-bar>
+              <rating-bar [value]="rating.internet"></rating-bar>
             </div>
           </div>
-          <div class="grid grid-cols-2">
+          <div class="grid grid-cols-[40%_60%]">
             <div>
-              <div>Food</div>
-              <div>Clubs</div>
-              <div>Social</div>
-              <div>Happiness</div>
-              <div>Safety</div>
+              <div class="mb-3">Food</div>
+              <div class="mb-3">Clubs</div>
+              <div class="mb-3">Social</div>
+              <div class="mb-3">Happiness</div>
+              <div class="mb-3">Safety</div>
             </div>
             <div>
-              <div>{{ rating.food }}</div>
-              <div>{{ rating.clubs }}</div>
-              <div>{{ rating.social }}</div>
-              <div>{{ rating.happiness }}</div>
-              <div>{{ rating.safety }}</div>
+              <rating-bar [value]="rating.food"></rating-bar>
+              <rating-bar [value]="rating.clubs"></rating-bar>
+              <rating-bar [value]="rating.social"></rating-bar>
+              <rating-bar [value]="rating.facilities"></rating-bar>
+              <rating-bar [value]="rating.safety"></rating-bar>
             </div>
           </div>
         </div>

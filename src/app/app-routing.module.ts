@@ -4,37 +4,43 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { UniversityComponent } from './university/university.component';
+import { AddUniversityRatingComponent } from './add-university-rating/add-university-rating.component';
 
 const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-    title: "Home",
+    title: 'Home',
   },
   {
     path: 'university/:id',
     component: UniversityComponent,
-    title: "University"
+    title: 'University',
+  },
+  {
+    path: 'add/university-rating/:id',
+    component: AddUniversityRatingComponent,
+    title: 'Add University Rating',
   },
   {
     path: 'login',
     component: LoginComponent,
-    title: "Login"
+    title: 'Login',
   },
   {
     path: 'signup',
     component: SignupComponent,
-    title: "Signup"
+    title: 'Signup',
   },
   {
     path: '',
     redirectTo: '/home',
-    pathMatch: 'prefix'
+    pathMatch: 'prefix',
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -1,14 +1,24 @@
+.details-container {
+  width: 100%;
+
+  @media (min-width: 640px) {
+    max-width: 640px;
+  }
+  @media (min-width: 900px) {
+    max-width: 900px;
+  }
+  @media (min-width: 1280px) {
+    max-width: 1280px;
+  }
+}
+
 .ratings-container {
   width: 100%;
 
-@media (min-width: 640px) {
-
+  @media (min-width: 640px) {
     max-width: 640px;
-
-}
-@media (min-width: 900px) {
-
+  }
+  @media (min-width: 900px) {
     max-width: 900px;
-
-}
+  }
 }

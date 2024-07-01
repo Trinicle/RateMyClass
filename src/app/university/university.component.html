@@ -1,8 +1,13 @@
 <general-navbar></general-navbar>
 <div>
   <div class="shadow-md p-6">
-    <div class="container mx-auto">
-      <university-details></university-details>
+    <div class="details-container mx-auto">
+      <div class="mb-4">
+        <university-details></university-details>
+      </div>
+      <div>
+        <add-university-rating [universityId]="id"></add-university-rating>
+      </div>
     </div>
   </div>
   <div class="ratings-container mx-auto">
