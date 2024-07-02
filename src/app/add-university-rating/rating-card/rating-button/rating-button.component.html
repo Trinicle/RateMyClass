@@ -1,0 +1,21 @@
+@for (number of numbers; track $index; let first = $first, last = $last) {
+<button
+  class="h-[40px] w-[60px] border-x-2 border-white"
+  [ngClass]="[
+    first ? 'rounded-l-full' : last ? 'rounded-r-full' : '',
+    number > ratingButton.cellHovered ? ' bg-slate-300' : ''
+  ]"
+  [ngStyle]="
+    ratingButton.cellHovered >= number ||
+    (ratingButton.cellHovered === 0 && ratingButton.cellActive >= number)
+      ? {
+          'background-color':
+            'hsl(' + getHue() + ', 100%,' + ratingButton.saturation + '%, 1)'
+        }
+      : {}
+  "
+  (click)="update(number)"
+  (mouseenter)="onEnter($index)"
+  (mouseleave)="onLeave()"
+></button>
+}

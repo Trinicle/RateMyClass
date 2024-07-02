@@ -1,0 +1,14 @@
+<form [formGroup]="addUniversityRatingForm" class="card-container mx-auto">
+  @for (key of keys; track $index) {
+  <div class="p-6 shadow-lg mb-6">
+    <div class="mb-6 font-bold text-lg pt-3 pl-3">{{ capitalize(key) }}</div>
+    <div class="flex items-center justify-center">
+      <div class="flex">
+        <rate-university-field-button
+          (activeCell)="onActiveButton($event, key)"
+        ></rate-university-field-button>
+      </div>
+    </div>
+  </div>
+  }
+</form>
