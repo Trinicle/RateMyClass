@@ -1,8 +1,12 @@
 <nav class="bg-black p-3">
   <div class="navbar-container mx-auto">
-    <div class="grid grid-cols-[3fr_8fr_3fr]">
+    <nav class="grid grid-cols-[3fr_8fr_3fr]">
       <div class="flex items-center">
-        <p class="text-white font-bold text-3xl font-[arial]">RateMyCourse</p>
+        <a
+          class="text-white font-bold text-3xl font-[arial]"
+          [routerLink]="['/home']"
+          >RateMyCourse</a
+        >
       </div>
       <div>
         <form>
@@ -26,6 +30,6 @@
           Sign Up
         </button>
       </div>
-    </div>
+    </nav>
   </div>
 </nav>

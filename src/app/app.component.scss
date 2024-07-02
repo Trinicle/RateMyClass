@@ -1,0 +1,14 @@
+
+.default-border-color {
+ @apply border-slate-700
+}
+
+.default-background-color {
+  @apply bg-slate-900
+}
+
+.card {
+  @apply border-slate-700 bg-slate-800 rounded-xl border text-[#7dd3fc]
+}
+
+

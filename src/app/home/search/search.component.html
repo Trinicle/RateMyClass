@@ -1,20 +1,25 @@
-<form [formGroup]="universityForm" #containerElement>
+<form [formGroup]="universityForm" #containerElement class="relative">
   <input
     formControlName="university"
     type="text"
-    class="search-box"
+    class="shadow-lg rounded-full py-5 px-7 text-2xl w-[40rem] font-semibold focus:outline-none"
     [ngClass]="
-      universities.length > 0 && isInputFocused ? 'focused-search-box' : ''
+      universities.length > 0 && isInputFocused
+        ? 'rounded-t-[36px] rounded-b-none shadow-none'
+        : ''
     "
-    placeholder="Your School"
+    placeholder="Your University"
   />
-  <div *ngFor="let university of universities; let lastItem = last">
-    <div
-      *ngIf="isInputFocused"
-      class="item-box"
-      [ngClass]="lastItem ? 'last-item shadow-lg' : ''"
-    >
-      <a [routerLink]="['/university', university.id]">{{ university.name }}</a>
+  <div
+    *ngIf="universities.length > 0 && isInputFocused"
+    class="absolute left-0 right-0 bg-white shadow-lg z-10 rounded-b-[36px]"
+  >
+    <div *ngFor="let university of universities; let lastItem = last">
+      <div class="py-5 px-7 text-lg font-bold">
+        <a [routerLink]="['/university', university.id]">{{
+          university.name
+        }}</a>
+      </div>
     </div>
   </div>
 </form>

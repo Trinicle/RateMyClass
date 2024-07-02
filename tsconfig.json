@@ -25,7 +25,7 @@
     ],
     "paths": {
       "@app/*": ["src/app/*"],
-      "@navbar/*": ["src/app/navbar/*"]
+      "@navbar/*": ["src/app/navbar/*"],
     }
   },
   "angularCompilerOptions": {
