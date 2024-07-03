@@ -1,17 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { RatingButtonComponent } from "./rating-button/rating-button.component";
+import { RatingButtonComponent } from './rating-button/rating-button.component';
 
 @Component({
-    selector: 'university-rating-card',
-    standalone: true,
-    templateUrl: './rating-card.component.html',
-    styleUrl: './rating-card.component.scss',
-    imports: [ReactiveFormsModule, CommonModule, RatingButtonComponent]
+  selector: 'university-rating-card',
+  standalone: true,
+  templateUrl: './rating-card.component.html',
+  styleUrl: './rating-card.component.scss',
+  imports: [ReactiveFormsModule, CommonModule, RatingButtonComponent],
 })
-export class RatingCardComponent implements OnInit{
-
+export class RatingCardComponent implements OnInit {
   addUniversityRatingForm = new FormGroup({
     quality: new FormControl(0),
     location: new FormControl(0),
@@ -28,6 +27,7 @@ export class RatingCardComponent implements OnInit{
 
   keys: string[] = [];
   numbers: number[] = [];
+  showGuidelines: boolean = false;
 
   constructor() {}
 
@@ -44,8 +44,10 @@ export class RatingCardComponent implements OnInit{
 
   onActiveButton(value: number, key: string) {
     this.addUniversityRatingForm.patchValue({
-      [key]: value
+      [key]: value,
     });
   }
-  
+  onToggleGuidelines() {
+    this.showGuidelines = !this.showGuidelines;
+  }
 }

@@ -1,7 +1,7 @@
-<form [formGroup]="addUniversityRatingForm" class="card-container mx-auto">
+<form [formGroup]="addUniversityRatingForm" class="max-w-[768px] mx-auto">
   @for (key of keys; track $index) {
-  <div class="p-6 shadow-lg mb-6">
-    <div class="mb-6 font-bold text-lg pt-3 pl-3">{{ capitalize(key) }}</div>
+  <div class="mb-6 card">
+    <div class="mb-6 text-lg">{{ capitalize(key) }}</div>
     <div class="flex items-center justify-center">
       <div class="flex">
         <rate-university-field-button
@@ -11,4 +11,30 @@
     </div>
   </div>
   }
+  <div class="card">
+    <div>Write a review</div>
+    <div>
+      Discuss your personal experience on this school. What's great about it?
+      What could use improvement?
+    </div>
+    <div class="">
+      <button class="z-10" (click)="onToggleGuidelines()">Guidelines</button>
+      <div
+        class="relative"
+        [ngClass]="{
+          'slide-bottom': showGuidelines,
+          'slide-top': !showGuidelines
+        }"
+      >
+        <div>
+          testing123
+          <input
+            formControlName="description"
+            type="text"
+            placeholder="Descrtiption"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
 </form>

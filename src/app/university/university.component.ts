@@ -1,19 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UniversityService } from './university.service';
-import { University, emptyUniversity } from '@app/models/university.model';
-import { CourseList, emptyCourseList } from '@app/models/course.model';
+import { emptyCourseList } from '@app/models/course.model';
 import { ActivatedRoute } from '@angular/router';
 import { ChartComponent } from './chart/chart.component';
 import { GeneralNavbarComponent } from '../navbar/general-navbar/general-navbar.component';
-import {
-  UniversityRatingList,
-  emptyUniversityRatingList,
-} from '@app/models/university-rating.model';
+
 import { UniversityDetailsComponent } from './university-details/university-details.component';
 import { RatingCardComponent } from './rating-card/rating-card.component';
 import { of } from 'rxjs';
 import { UniversityQuery } from '@app/query/university.query';
-import { AddRatingComponent } from './add-rating/add-rating.component';
 
 @Component({
   selector: 'app-university',
@@ -25,7 +20,6 @@ import { AddRatingComponent } from './add-rating/add-rating.component';
     ChartComponent,
     UniversityDetailsComponent,
     RatingCardComponent,
-    AddRatingComponent,
   ],
 })
 export class UniversityComponent implements OnInit, OnDestroy {

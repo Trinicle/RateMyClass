@@ -2,7 +2,7 @@
   @for (number of numbers; track $index; let first = $first, last = $last) { @if
   (number > value) {
   <div
-    class="h-[24px] w-[32px] mr-[3px] bg-slate-300"
+    class="h-[24px] w-[32px] mr-[3px] bg-slate-500"
     [ngClass]="first ? 'rounded-l-full' : last ? 'rounded-r-full' : ''"
   ></div>
   } @else {
@@ -10,7 +10,7 @@
     class="h-[24px] w-[32px] mr-[3px]"
     [ngClass]="first ? 'rounded-l-full' : last ? 'rounded-r-full' : ''"
     [ngStyle]="{
-      'background-color': 'hsl(' + hue + ', 100%, 70%, 1)'
+      'background-color': 'hsl(' + hue + ', 100%, 45%, 1)'
     }"
   ></div>
   } }

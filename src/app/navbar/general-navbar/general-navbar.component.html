@@ -1,35 +1,25 @@
-<nav class="bg-black p-3">
-  <div class="navbar-container mx-auto">
-    <nav class="grid grid-cols-[3fr_8fr_3fr]">
+<div class="fixed w-screen border-b border-b-primary backdrop-blur-lg">
+  <div class="container mx-auto">
+    <nav class="flex justify-between py-5">
       <div class="flex items-center">
-        <a
-          class="text-white font-bold text-3xl font-[arial]"
-          [routerLink]="['/home']"
-          >RateMyCourse</a
+        <a class="text-white font-bold text-4xl" [routerLink]="['/home']"
+          >RATEMYCOURSE</a
         >
       </div>
       <div>
         <form>
           <input
-            class="bg-white rounded-full py-2 px-5 focus:outline-none w-96"
+            class="input-primary py-2 px-5 text-base w-[400px] rounded-xl"
             placeholder="Your Course"
           />
         </form>
       </div>
-      <div class="flex text-white font-semibold">
-        <button
-          class="border rounded-full px-5 border-white mr-3"
-          routerLink="/login"
-        >
-          Log In
-        </button>
-        <button
-          class="border rounded-full px-5 border-white"
-          routerLink="/signup"
-        >
+      <div class="flex">
+        <button class="button-primary" routerLink="/login">Log In</button>
+        <button class="button-primary ml-3" routerLink="/signup">
           Sign Up
         </button>
       </div>
     </nav>
   </div>
-</nav>
+</div>

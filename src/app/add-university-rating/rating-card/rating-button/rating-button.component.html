@@ -1,21 +1,34 @@
-@for (number of numbers; track $index; let first = $first, last = $last) {
-<button
-  class="h-[40px] w-[60px] border-x-2 border-white"
-  [ngClass]="[
-    first ? 'rounded-l-full' : last ? 'rounded-r-full' : '',
-    number > ratingButton.cellHovered ? ' bg-slate-300' : ''
-  ]"
-  [ngStyle]="
-    ratingButton.cellHovered >= number ||
-    (ratingButton.cellHovered === 0 && ratingButton.cellActive >= number)
-      ? {
-          'background-color':
-            'hsl(' + getHue() + ', 100%,' + ratingButton.saturation + '%, 1)'
-        }
-      : {}
-  "
-  (click)="update(number)"
-  (mouseenter)="onEnter($index)"
-  (mouseleave)="onLeave()"
-></button>
+<div class="mx-20">
+  @for (number of numbers; track $index; let first = $first, last = $last) {
+  <button
+    class="h-[40px] w-[60px] mx-[2px] border-slate-800 transition hover:scale-110"
+    [ngClass]="[
+      first ? 'rounded-l-full' : last ? 'rounded-r-full' : '',
+      number > ratingButton.cellHovered ? ' bg-slate-500' : ''
+    ]"
+    [ngStyle]="
+      ratingButton.cellHovered >= number ||
+      (ratingButton.cellHovered === 0 && ratingButton.cellActive >= number)
+        ? {
+            'background-color':
+              'hsl(' + getHue() + ', 100%,' + ratingButton.saturation + '%, 1)'
+          }
+        : {}
+    "
+    (click)="update(number)"
+    (mouseenter)="onEnter($index)"
+    (mouseleave)="onLeave()"
+  ></button>
+
+  }
+</div>
+@if (ratingButton.cellHovered === 0) {
+<div class="flex justify-between">
+  <div>1 - Awful</div>
+  <div>5 - Awesome</div>
+</div>
+} @else {
+<div class="flex justify-center">
+  {{ ratingButton.cellHovered }} - {{ headers[ratingButton.cellHovered - 1] }}
+</div>
 }

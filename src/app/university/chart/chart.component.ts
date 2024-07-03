@@ -6,8 +6,6 @@ import {
   ChartEvent,
 } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
-import { from, map, mergeMap, reduce } from 'rxjs';
-import { UniversityService } from '../university.service';
 import { UniversityRatingListQuery } from '@app/query/university-rating-list.query';
 
 @Component({
@@ -52,18 +50,26 @@ export class ChartComponent implements OnInit {
         ticks: {
           font: {
             size: 12,
-            weight: 600,
+            weight: 400,
+            family: 'Fira Code',
           },
-          color: 'black',
+          color: 'rgb(125 211 252)',
+        },
+        grid: {
+          color: 'rgb(51 65 85)',
         },
       },
       y: {
         ticks: {
           font: {
             size: 12,
-            weight: 600,
+            weight: 400,
+            family: 'Fira Code',
           },
-          color: 'black',
+          color: 'rgb(244 114 182)',
+        },
+        grid: {
+          color: 'rgb(51 65 85)',
         },
       },
     },
@@ -74,10 +80,11 @@ export class ChartComponent implements OnInit {
       title: {
         display: true,
         text: 'Ratings',
-        color: 'black',
+        color: 'white',
         font: {
           size: 16,
-          weight: 800,
+          weight: 400,
+          family: 'Fira Code',
         },
       },
     },

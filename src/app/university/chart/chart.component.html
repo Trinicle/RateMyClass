@@ -1,5 +1,13 @@
-<div class="h-full max-w-[720px] mx-auto">
-  <canvas baseChart [data]="barChartData" [options]="barChartOptions" [type]="barChartType"
-    (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
-  </canvas>
+<div class="h-full mx-auto card">
+  <div class="h-full">
+    <canvas
+      baseChart
+      [data]="barChartData"
+      [options]="barChartOptions"
+      [type]="barChartType"
+      (chartHover)="chartHovered($event)"
+      (chartClick)="chartClicked($event)"
+    >
+    </canvas>
+  </div>
 </div>

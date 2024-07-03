@@ -2,7 +2,7 @@
   <input
     formControlName="university"
     type="text"
-    class="shadow-lg rounded-full py-5 px-7 text-2xl w-[40rem] font-semibold focus:outline-none"
+    class="input-primary"
     [ngClass]="
       universities.length > 0 && isInputFocused
         ? 'rounded-t-[36px] rounded-b-none shadow-none'
@@ -12,10 +12,10 @@
   />
   <div
     *ngIf="universities.length > 0 && isInputFocused"
-    class="absolute left-0 right-0 bg-white shadow-lg z-10 rounded-b-[36px]"
+    class="absolute left-0 right-0 bg-slate-700 z-10 rounded-b-[36px]"
   >
     <div *ngFor="let university of universities; let lastItem = last">
-      <div class="py-5 px-7 text-lg font-bold">
+      <div class="py-5 px-7 text-lg">
         <a [routerLink]="['/university', university.id]">{{
           university.name
         }}</a>

@@ -4,7 +4,40 @@
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap');
 
-body {
-  @apply m-0 p-0;
-  font-family: "Fira Code"
+@layer base {
+  :root {
+    --color-primary: 125 211 252;
+    --color-secondary: 244 114 182;
+    --color-tertiary: 148 163 184;
+    --border-primary: 51 65 85;
+    --background-primary: 15 23 42;
+    --background-secondary: 30 41 59;
+    --background-tertiary: 51 65 85;
+  }
 }
+
+@layer components {
+  body {
+    @apply m-0 p-0;
+    font-family: "Fira Code"
+  }
+
+  .card {
+    @apply border-primary bg-secondary rounded-xl border text-primary p-5
+  }
+
+  .button-primary {
+   @apply border-secondary bg-secondary rounded-full border text-white px-5 py-1 hover:bg-tertiary hover:scale-105
+  }
+
+  .button-secondary {
+    @apply border-primary bg-secondary rounded-full border text-primary
+  }
+
+  .input-primary {
+    @apply bg-tertiary rounded-full py-5 px-7 text-2xl w-[40rem] focus:outline-none text-white
+  }
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

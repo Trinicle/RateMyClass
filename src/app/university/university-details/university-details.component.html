@@ -1,11 +1,19 @@
 @if (university$ | async; as university) {
-<div class="text-gray-400 text-sm">
+<div class="text-tertiary text-sm">
   <p>
     {{ university.address }} {{ university.city }}, {{ university.state }}
     {{ university.zip }}
   </p>
 </div>
-<div class="font-extrabold text-3xl">
+<div class="font-extrabold text-3xl text-white">
   <p>{{ university.name }}</p>
+</div>
+<div class="mt-4">
+  <button
+    [routerLink]="['/add/university-rating', university.id]"
+    class="button-secondary px-10 py-2"
+  >
+    Add Rating
+  </button>
 </div>
 }
