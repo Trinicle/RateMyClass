@@ -14,11 +14,6 @@ export interface UniversityRating {
   date: string;
 }
 
-export interface UniversityRatingList {
-  numberOfRatings: number;
-  ratings: UniversityRating[];
-}
-
 export const emptyUniversityRating = {
   id: 0,
   description: '',
@@ -32,10 +27,5 @@ export const emptyUniversityRating = {
   social: 0,
   happiness: 0,
   safety: 0,
-  date: ''
+  date: '',
 } as UniversityRating;
-
-export const emptyUniversityRatingList = {
-  numberOfRatings: 0,
-  ratings: [] as UniversityRating[],
-} as UniversityRatingList;

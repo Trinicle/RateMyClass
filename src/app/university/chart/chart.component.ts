@@ -6,7 +6,9 @@ import {
   ChartEvent,
 } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
-import { UniversityRatingListQuery } from '@app/query/university-rating-list.query';
+import { ChartService } from './state/chart.service';
+import { ActivatedRoute } from '@angular/router';
+import { ChartQuery } from './state/chart.query';
 
 @Component({
   selector: 'university-chart',
@@ -22,10 +24,18 @@ export class ChartComponent implements OnInit {
   chartData: number[] = [];
   chartDataColor: string[] = [];
   totalRatings: number = 1;
-  constructor(private ratingListQuery: UniversityRatingListQuery) {}
+  constructor(
+    private chartService: ChartService,
+    private chartQuery: ChartQuery,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.ratingListQuery.getAverageList().subscribe((dataArray) => {
+    const id = +(this.route.snapshot.paramMap.get('id') ?? 0);
+    this.chartService.reset();
+    this.chartService.get(id);
+
+    this.chartQuery.getAverageList().subscribe((dataArray) => {
       this.chartData = dataArray;
       this.chartDataColor = [];
       for (const item of this.chartData) {

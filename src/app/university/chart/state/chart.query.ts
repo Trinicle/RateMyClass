@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { UniversityRatingList } from '@app/models/university-rating.model';
-import { UniversityRatingListStore } from '@app/stores/university-rating-list.store';
 import { Query } from '@datorama/akita';
+import { ChartState, ChartStore } from './chart.store';
 import { map } from 'rxjs';
 
 export interface Data {
@@ -27,20 +26,16 @@ export const emptyChartData = {
   clubs: 0,
   social: 0,
   happiness: 0,
-  safety: 0
-} as Data
+  safety: 0,
+} as Data;
 
 @Injectable({ providedIn: 'root' })
-export class UniversityRatingListQuery extends Query<UniversityRatingList> {
+export class ChartQuery extends Query<ChartState> {
   ratingList$ = this.select();
-  ratings$ = this.select(item => item.ratings);
+  ratings$ = this.select((item) => item.ratings);
 
-  constructor(protected override store: UniversityRatingListStore) {
+  constructor(protected override store: ChartStore) {
     super(store);
-  }
-
-  selectRatingList() {
-    return this.ratingList$;
   }
 
   selectRatings() {
@@ -49,9 +44,9 @@ export class UniversityRatingListQuery extends Query<UniversityRatingList> {
 
   getAverageList() {
     return this.ratingList$.pipe(
-      map(list => {
+      map((list) => {
+        console.log(list);
         var combinedList = list.ratings.reduce((acc, curr) => {
- 
           acc.quality += curr.quality;
           acc.location += curr.location;
           acc.opportunities += curr.opportunities;
@@ -62,12 +57,13 @@ export class UniversityRatingListQuery extends Query<UniversityRatingList> {
           acc.social += curr.social;
           acc.happiness += curr.happiness;
           acc.safety += curr.safety;
-          return acc
-        }, emptyChartData)
+          return acc;
+        }, emptyChartData);
 
-        return Object.values(combinedList).map(item => item / list.numberOfRatings);
-      }
-      )
+        return Object.values(combinedList).map(
+          (item) => item / list.ratings.length
+        );
+      })
     );
   }
 }

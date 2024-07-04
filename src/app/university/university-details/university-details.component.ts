@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { UniversityService } from '../university.service';
-import { University, emptyUniversity } from '@app/models/university.model';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+
 import { Observable, of } from 'rxjs';
-import { UniversityQuery } from '@app/query/university.query';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { UniversityDetailsService } from './state/university-details.service';
+import { UniversityDetails } from './state/university-details.model';
+import { UniversityDetailsQuery } from './state/university-details.query';
 
 @Component({
   selector: 'university-details',
@@ -13,15 +14,21 @@ import { RouterLink } from '@angular/router';
   templateUrl: './university-details.component.html',
   styleUrl: './university-details.component.scss',
 })
-export class UniversityDetailsComponent implements OnInit {
-  university$: Observable<University> = of(emptyUniversity);
+export class UniversityDetailsComponent implements OnInit, OnDestroy {
+  university$: Observable<UniversityDetails> = of();
 
   constructor(
-    private universityQuery: UniversityQuery,
-    private universityService: UniversityService
+    private universityDetailsService: UniversityDetailsService,
+    private universityDetailsQuery: UniversityDetailsQuery,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.university$ = this.universityQuery.selectUniversity();
+    const id = +(this.route.snapshot.paramMap.get('id') ?? 0);
+    this.universityDetailsService.get(id);
+
+    this.university$ = this.universityDetailsQuery.select();
   }
+
+  ngOnDestroy(): void {}
 }

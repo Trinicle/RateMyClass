@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { of } from 'rxjs';
-import { UniversityRating } from '@app/models/university-rating.model';
 import { CommonModule } from '@angular/common';
-import { UniversityRatingListQuery } from '@app/query/university-rating-list.query';
 import { DateFormatPipe } from '../../shared/date-format.pipe';
 import { RatingBarComponent } from './rating-bar/rating-bar.component';
+import { ChartQuery } from '../chart/state/chart.query';
+import { UniversityRating } from '../chart/state/chart.model';
 
 @Component({
   selector: 'university-rating-card',
@@ -16,10 +16,10 @@ import { RatingBarComponent } from './rating-bar/rating-bar.component';
 export class RatingCardComponent implements OnInit {
   ratings$ = of([] as UniversityRating[]);
 
-  constructor(private ratingListQuery: UniversityRatingListQuery) {}
+  constructor(private chartQuery: ChartQuery) {}
 
   ngOnInit(): void {
-    this.ratings$ = this.ratingListQuery.selectRatings();
+    this.ratings$ = this.chartQuery.selectRatings();
   }
 
   average(rating: UniversityRating) {
