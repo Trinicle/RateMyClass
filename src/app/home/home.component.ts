@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { HomeService } from './home.service';
-import { SearchComponent } from './search/search.component';
+import { SearchUniversityComponent } from './search/search-university.component';
 import { HomeNavbarComponent } from '../navbar/home-navbar/home-navbar.component';
 
 @Component({
@@ -8,10 +7,10 @@ import { HomeNavbarComponent } from '../navbar/home-navbar/home-navbar.component
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss'],
     standalone: true,
-    imports: [HomeNavbarComponent, SearchComponent],
+    imports: [HomeNavbarComponent, SearchUniversityComponent],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  constructor(private homeService: HomeService) {}
+  constructor() {}
 
   ngOnInit(): void {}
 

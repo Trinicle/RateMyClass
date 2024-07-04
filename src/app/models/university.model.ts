@@ -47,4 +47,4 @@ export const emptyUniversity = {
   state: '',
   zip: '',
   website: '',
-}
+} as University

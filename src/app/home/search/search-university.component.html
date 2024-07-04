@@ -1,0 +1,24 @@
+@if (universities$ | async; as universities) {
+<form [formGroup]="universityForm" #containerElement class="relative">
+  <input
+    formControlName="university"
+    type="text"
+    class="input-primary"
+    [ngClass]="
+      universities.items.length > 0 && isInputFocused
+        ? 'rounded-t-[36px] rounded-b-none shadow-none'
+        : ''
+    "
+    placeholder="Your University"
+  />
+  @if (universities.items.length > 0 && isInputFocused) {
+  <div class="absolute left-0 right-0 bg-slate-700 z-10 rounded-b-[36px]">
+    @for (university of universities.items; track $index; let last = $last) {
+    <div class="py-5 px-7 text-lg">
+      <a [routerLink]="['/university', university.id]">{{ university.name }}</a>
+    </div>
+    }
+  </div>
+  }
+</form>
+}

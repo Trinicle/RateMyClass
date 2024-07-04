@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { GetResponse } from '@app/models/search.model';
 import { UniversityWithLists, emptyUniversitywithLists } from '@app/models/university.model';
 import { CourseListStore } from '@app/stores/course-list.store';
 import { UniversityRatingListStore } from '@app/stores/university-rating-list.store';
@@ -20,14 +19,14 @@ export class UniversityService {
   ) { }
 
   getUniversityDetails(id: number) {
-    this.http.get<GetResponse<UniversityWithLists>>(
+    this.http.get<UniversityWithLists>(
       `${this.url}`.concat(
         `${id}?includeLists=true`
       ),
       { observe: 'response' }
     )
       .pipe(
-        map((response) => response.body?.result || emptyUniversitywithLists),
+        map((response) => response.body || emptyUniversitywithLists),
         catchError(error => {
           return of(emptyUniversitywithLists)
         })

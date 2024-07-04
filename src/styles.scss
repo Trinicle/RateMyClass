@@ -19,7 +19,7 @@
 @layer components {
   body {
     @apply m-0 p-0;
-    font-family: "Fira Code"
+    font-family: "Fira Code", sans-serif
   }
 
   .card {
@@ -27,17 +27,14 @@
   }
 
   .button-primary {
-   @apply border-secondary bg-secondary rounded-full border text-white px-5 py-1 hover:bg-tertiary hover:scale-105
+   @apply border-secondary bg-secondary rounded-full border text-white px-5 py-1 hover:bg-tertiary hover:scale-105 transition
   }
 
   .button-secondary {
-    @apply border-primary bg-secondary rounded-full border text-primary
+    @apply border-primary bg-secondary rounded-full border text-primary hover:scale-105 transition-all hover:bg-tertiary
   }
 
   .input-primary {
     @apply bg-tertiary rounded-full py-5 px-7 text-2xl w-[40rem] focus:outline-none text-white
   }
 }
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
