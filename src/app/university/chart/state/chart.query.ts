@@ -16,19 +16,6 @@ export interface Data {
   safety: number;
 }
 
-export const emptyChartData = {
-  quality: 0,
-  location: 0,
-  opportunities: 0,
-  facilities: 0,
-  internet: 0,
-  food: 0,
-  clubs: 0,
-  social: 0,
-  happiness: 0,
-  safety: 0,
-} as Data;
-
 @Injectable({ providedIn: 'root' })
 export class ChartQuery extends Query<ChartState> {
   ratingList$ = this.select();
@@ -43,10 +30,21 @@ export class ChartQuery extends Query<ChartState> {
   }
 
   getAverageList() {
-    return this.ratingList$.pipe(
-      map((list) => {
-        console.log(list);
-        var combinedList = list.ratings.reduce((acc, curr) => {
+    return this.ratings$.pipe(
+      map((ratings) => {
+        const emptyChartData = {
+          quality: 0,
+          location: 0,
+          opportunities: 0,
+          facilities: 0,
+          internet: 0,
+          food: 0,
+          clubs: 0,
+          social: 0,
+          happiness: 0,
+          safety: 0,
+        } as Data;
+        var combinedList = ratings.reduce((acc, curr) => {
           acc.quality += curr.quality;
           acc.location += curr.location;
           acc.opportunities += curr.opportunities;
@@ -60,9 +58,7 @@ export class ChartQuery extends Query<ChartState> {
           return acc;
         }, emptyChartData);
 
-        return Object.values(combinedList).map(
-          (item) => item / list.ratings.length
-        );
+        return Object.values(combinedList).map((item) => item / ratings.length);
       })
     );
   }

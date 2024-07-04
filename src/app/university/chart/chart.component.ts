@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import {
   ChartConfiguration,
   ChartData,
@@ -9,6 +9,7 @@ import { BaseChartDirective } from 'ng2-charts';
 import { ChartService } from './state/chart.service';
 import { ActivatedRoute } from '@angular/router';
 import { ChartQuery } from './state/chart.query';
+import { from, map, mergeMap, reduce } from 'rxjs';
 
 @Component({
   selector: 'university-chart',
@@ -17,7 +18,7 @@ import { ChartQuery } from './state/chart.query';
   standalone: true,
   imports: [BaseChartDirective],
 })
-export class ChartComponent implements OnInit {
+export class ChartComponent implements OnInit, OnDestroy {
   @ViewChild(BaseChartDirective) chart: BaseChartDirective<'bar'> | undefined;
 
   barChartType = 'bar' as const;
@@ -50,6 +51,10 @@ export class ChartComponent implements OnInit {
       this.barChartData.datasets[0].backgroundColor = this.chartDataColor;
       this.chart?.update();
     });
+  }
+
+  ngOnDestroy(): void {
+    this.chartService.reset();
   }
 
   public barChartOptions: ChartConfiguration<'bar'>['options'] = {

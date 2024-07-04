@@ -30,5 +30,7 @@ export class UniversityDetailsComponent implements OnInit, OnDestroy {
     this.university$ = this.universityDetailsQuery.select();
   }
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    this.universityDetailsService.reset();
+  }
 }
