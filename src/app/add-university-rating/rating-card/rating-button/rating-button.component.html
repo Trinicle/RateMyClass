@@ -1,4 +1,4 @@
-<div class="mx-20">
+<div class="mx-20" (mouseleave)="onLeave()">
   @for (number of numbers; track $index; let first = $first, last = $last) {
   <button
     class="h-[40px] w-[60px] mx-[2px] border-slate-800 transition hover:scale-110"
@@ -17,18 +17,17 @@
     "
     (click)="update(number)"
     (mouseenter)="onEnter($index)"
-    (mouseleave)="onLeave()"
   ></button>
 
   }
 </div>
 @if (ratingButton.cellHovered === 0) {
-<div class="flex justify-between">
+<div class="flex justify-between text-tertiary">
   <div>1 - Awful</div>
   <div>5 - Awesome</div>
 </div>
 } @else {
-<div class="flex justify-center">
+<div class="flex justify-center text-tertiary">
   {{ ratingButton.cellHovered }} - {{ headers[ratingButton.cellHovered - 1] }}
 </div>
 }

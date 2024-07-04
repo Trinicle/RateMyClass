@@ -12,28 +12,44 @@
   </div>
   }
   <div class="card">
-    <div>Write a review</div>
-    <div>
+    <div class="text-lg mb-4">Write a review</div>
+    <div class="mb-4 text-tertiary">
       Discuss your personal experience on this school. What's great about it?
       What could use improvement?
     </div>
-    <div class="">
-      <button class="z-10" (click)="onToggleGuidelines()">Guidelines</button>
-      <div
-        class="relative"
-        [ngClass]="{
-          'slide-bottom': showGuidelines,
-          'slide-top': !showGuidelines
-        }"
-      >
-        <div>
-          testing123
-          <input
-            formControlName="description"
-            type="text"
-            placeholder="Descrtiption"
-          />
-        </div>
+    <div id="guidelines">
+      <div class="bg-tertiary w-full rounded-lg px-3 py-1 mb-5">
+        <button
+          class="font-bold text-secondary text-xl w-full flex"
+          (click)="onToggleGuidelines()"
+        >
+          Guidelines
+        </button>
+        <ul
+          [ngClass]="showGuidelines ? 'show' : 'hide'"
+          class="list-disc list-inside text-white"
+        >
+          <li>
+            Your rating could be removed if you use profanity or derogatory
+            terms.
+          </li>
+          <li>
+            Refer to the rating categories to help you better elaborate your
+            comments.
+          </li>
+          <li>Don’t forget to proof read!</li>
+        </ul>
+      </div>
+      <div>
+        <textarea
+          name="text"
+          rows="14"
+          wrap="soft"
+          formControlName="description"
+          class="w-full rounded-lg bg-tertiary p-5"
+          placeholder="Description"
+        >
+        </textarea>
       </div>
     </div>
   </div>

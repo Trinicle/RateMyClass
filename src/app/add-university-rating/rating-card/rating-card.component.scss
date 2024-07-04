@@ -2,10 +2,12 @@
   0% {
     transform: translateY(-100%);
     opacity: 0;
+    height: 0%;
   }
   100% {
     transform: translateY(0%);
     opacity: 1;
+    height: 100%;
   }
 }
 
@@ -17,15 +19,30 @@
   0% {
     transform: translateY(0);
     opacity: 1;
-
+    height: 100%
   }
   100% {
     transform: translateY(-100%);
     opacity: 0;
     display: none;
+    height: 0%
   }
 }
 
 .slide-top {
 	animation: slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+#guidelines .hide {
+  max-height: 0;
+  transition: max-height 0.15s ease-out, margin-top 0.2s ease-out;
+  margin-top: 0;
+  overflow: hidden;
+}
+
+.show {
+  max-height: 500px;
+  margin-top: 10px;
+  transition: max-height 0.45s ease-in, margin-top 0.15s ease-in;
+  overflow: hidden;
 }
