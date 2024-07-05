@@ -1,6 +1,7 @@
 <div class="mx-20" (mouseleave)="onLeave()">
   @for (number of numbers; track $index; let first = $first, last = $last) {
   <button
+    type="button"
     class="h-[40px] w-[60px] mx-[2px] border-slate-800 transition hover:scale-110"
     [ngClass]="[
       first ? 'rounded-l-full' : last ? 'rounded-r-full' : '',

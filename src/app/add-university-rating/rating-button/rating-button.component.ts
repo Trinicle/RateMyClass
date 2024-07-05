@@ -21,7 +21,7 @@ export class RatingButtonComponent implements OnInit {
   ratingButton: RatingButton = {
     cellHovered: 0,
     cellActive: 0,
-    saturation: 50,
+    saturation: 45,
   };
   numbers: number[] = [1, 2, 3, 4, 5];
   headers: string[] = ['Awful', 'Bad', 'Okay', 'Good', 'Awesome'];
@@ -30,7 +30,7 @@ export class RatingButtonComponent implements OnInit {
 
   onEnter(index: number) {
     this.ratingButton.cellHovered = index + 1;
-    this.ratingButton.saturation = 60;
+    this.ratingButton.saturation = 75;
   }
 
   onLeave() {

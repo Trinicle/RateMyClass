@@ -18,6 +18,11 @@ module.exports = {
         'primary': 'rgb(var(--background-primary) / <alpha-value>)',
         'secondary': 'rgb(var(--background-secondary) / <alpha-value>)',
         'tertiary': 'rgb(var(--background-tertiary) / <alpha-value>)'
+      },
+      fill: {
+        'primary': 'rgb(var(--color-primary) / <alpha-value>)',
+        'secondary': 'rgb(var(--color-secondary) / <alpha-value>)',
+        'tertiary': 'rgb(var(--color-tertiary) / <alpha-value>)',
       }
     },
   },
