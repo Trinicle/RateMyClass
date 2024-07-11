@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
 
 import { CoursesStore } from './course.store';
-import { Course } from './courses.model';
+import { Course, emptyCourse } from './courses.model';
 
 @Injectable({
   providedIn: 'root',
@@ -13,15 +13,15 @@ export class CoursesService {
 
   constructor(private http: HttpClient, private coursesStore: CoursesStore) {}
 
-  get(id: number) {
+  get(id: number, courseId: number) {
     this.http
-      .get<Course[]>(`${this.url}/${id}/courses?includeRatings=false`, {
+      .get<Course>(`${this.url}/${id}/courses/${courseId}`, {
         observe: 'response',
       })
       .pipe(
         map((response) => {
-          this.coursesStore.update({
-            courses: response.body ?? [],
+          this.coursesStore.update((state) => {
+            return response.body ?? emptyCourse;
           });
         })
       )

@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Query } from '@datorama/akita';
 
-import { CoursesStore, CourseState } from './course.store';
-import { map } from 'rxjs';
+import { Course } from './courses.model';
+import { CoursesStore } from './course.store';
 
 @Injectable({ providedIn: 'root' })
-export class CoursesQuery extends Query<CourseState> {
-  courses$ = this.select((item) => item.courses);
-
+export class CoursesQuery extends Query<Course> {
   constructor(protected override store: CoursesStore) {
     super(store);
   }

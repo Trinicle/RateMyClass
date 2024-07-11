@@ -6,6 +6,7 @@ import { SignupComponent } from './signup/signup.component';
 import { UniversityComponent } from './university/university.component';
 import { AddUniversityRatingComponent } from './add-university-rating/add-university-rating.component';
 import { CoursesComponent } from './courses/courses.component';
+import { CourseInfoComponent } from './course-rating/course-rating.component';
 
 const routes: Routes = [
   {
@@ -24,10 +25,20 @@ const routes: Routes = [
     title: 'Courses',
   },
   {
+    path: 'courses/:id/ratings',
+    component: CourseInfoComponent,
+    title: 'Course Ratings',
+  },
+  {
     path: 'add/university-rating/:id',
     component: AddUniversityRatingComponent,
     title: 'Add University Rating',
   },
+  // {
+  //   path: 'add/university-rating/:id',
+  //   component: AddUniversityRatingComponent,
+  //   title: 'Add University Rating',
+  // },
   {
     path: 'login',
     component: LoginComponent,

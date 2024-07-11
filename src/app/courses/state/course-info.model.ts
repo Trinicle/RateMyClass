@@ -1,6 +1,11 @@
+export interface CourseWithRating {
+  id: number;
+  name: string;
+  ratings: CourseRating[];
+}
+
 export interface CourseRating {
   id: number;
-  courseId: number;
   description: string;
   quality: number;
   difficulty: number;
@@ -10,7 +15,6 @@ export interface CourseRating {
 
 export const emptyCourseRating = {
   id: 0,
-  courseId: 0,
   description: '',
   quality: 0,
   difficulty: 0,

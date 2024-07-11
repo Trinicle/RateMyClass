@@ -1,6 +1,7 @@
 @if (ratingAverage$ | async; as rating) {
 <div
   class="card mb-6 text-white hover:bg-tertiary hover:cursor-pointer transition"
+  (click)="viewRatings()"
 >
   <div class="grid grid-cols-[2fr_6fr] gap-6">
     <div class="flex justify-between items-center">

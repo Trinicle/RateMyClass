@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Query } from '@datorama/akita';
 
 import { map } from 'rxjs';
-import { CourseInfoStore, CourseRatingState } from './course-info.store';
+import { CourseRatingState, CourseRatingStore } from './course-rating.store';
 
 export interface Data {
   quality: number;
@@ -11,18 +11,19 @@ export interface Data {
 }
 
 @Injectable({ providedIn: 'root' })
-export class CourseInfoQuery extends Query<CourseRatingState> {
+export class CourseRatingQuery extends Query<CourseRatingState> {
   ratings$ = this.select((item) => item.ratings);
 
-  constructor(protected override store: CourseInfoStore) {
+  constructor(protected override store: CourseRatingStore) {
     super(store);
   }
 
-  getAverage(id: number) {
-    const rating$ = this.select((item) =>
-      item.ratings.filter((rating) => rating.courseId === id)
-    );
-    return rating$.pipe(
+  getRatings() {
+    return this.ratings$;
+  }
+
+  getAverage() {
+    return this.ratings$.pipe(
       map((ratings) => {
         const emptyData = {
           quality: 0,

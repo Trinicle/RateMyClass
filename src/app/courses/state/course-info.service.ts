@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
 
-import { CourseRating } from './course-info.model';
+import { CourseRating, CourseWithRating } from './course-info.model';
 import { CourseInfoStore } from './course-info.store';
 
 @Injectable({
@@ -16,18 +16,18 @@ export class CourseInfoService {
     private courseInfoStore: CourseInfoStore
   ) {}
 
-  get(id: number, courseId: number) {
+  get(id: number) {
     this.http
-      .get<CourseRating[]>(`${this.url}/${id}/courses/${courseId}/ratings`, {
-        observe: 'response',
-      })
+      .get<CourseWithRating[]>(
+        `${this.url}/${id}/courses?includeRatings=true`,
+        {
+          observe: 'response',
+        }
+      )
       .pipe(
         map((response) => {
-          response.body?.map((item) => {
-            item.courseId = courseId;
-            this.courseInfoStore.update((state) => ({
-              ratings: [...state.ratings, item],
-            }));
+          this.courseInfoStore.update({
+            courses: response.body ?? [],
           });
         })
       )

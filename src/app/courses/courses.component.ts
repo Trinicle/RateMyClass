@@ -1,12 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { GeneralNavbarComponent } from '../navbar/general-navbar/general-navbar.component';
-import { CoursesService } from './state/courses.service';
-import { CoursesQuery } from './state/courses.query';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { Course } from './state/courses.model';
+import { Course } from '../course-rating/course-details/state/courses.model';
 import { CommonModule } from '@angular/common';
 import { CourseCardComponent } from './course-card/course-card.component';
+import { CourseInfoService } from './state/course-info.service';
+import { CourseInfoQuery } from './state/course-info.query';
 
 @Component({
   selector: 'university-courses',
@@ -19,19 +19,19 @@ export class CoursesComponent implements OnInit, OnDestroy {
   courses$: Observable<Course[]> = of();
 
   constructor(
-    private coursesService: CoursesService,
-    private coursesQuery: CoursesQuery,
+    private courseInfoService: CourseInfoService,
+    private courseInfoQuery: CourseInfoQuery,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     const id = +(this.route.snapshot.paramMap.get('id') ?? 0);
-    this.coursesService.get(id);
+    this.courseInfoService.get(id);
 
-    this.courses$ = this.coursesQuery.select((item) => item.courses);
+    this.courses$ = this.courseInfoQuery.select((item) => item.courses);
   }
 
   ngOnDestroy(): void {
-    this.coursesService.reset();
+    this.courseInfoService.reset();
   }
 }

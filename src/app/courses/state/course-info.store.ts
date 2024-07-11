@@ -1,23 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Store, StoreConfig } from '@datorama/akita';
-import { CourseRating } from './course-info.model';
+import { CourseRating, CourseWithRating } from './course-info.model';
 
-export interface CourseRatingState {
-  ratings: CourseRating[];
+export interface CoursesWithRatingsState {
+  courses: CourseWithRating[];
 }
 
 export const emptyCourseRatingState = {
-  ratings: [],
-} as CourseRatingState;
+  courses: [],
+} as CoursesWithRatingsState;
 
 @Injectable({ providedIn: 'root' })
 @StoreConfig({ name: 'course-rating-list', resettable: true })
-export class CourseInfoStore extends Store<CourseRatingState> {
+export class CourseInfoStore extends Store<CoursesWithRatingsState> {
   constructor() {
     super(createInitialState());
   }
 }
 
-function createInitialState(): Partial<CourseRatingState> {
+function createInitialState(): Partial<CoursesWithRatingsState> {
   return emptyCourseRatingState;
 }

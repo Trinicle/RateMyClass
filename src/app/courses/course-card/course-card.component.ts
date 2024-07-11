@@ -1,13 +1,13 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Course } from '../state/courses.model';
-import { ActivatedRoute } from '@angular/router';
+import { Course } from '../../course-rating/course-details/state/courses.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Observable, of } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { UniversityDetailsQuery } from '@app/university/university-details/state/university-details.query';
 import { UniversityDetails } from '@app/university/university-details/state/university-details.model';
-import { CourseInfoQuery, Data } from '../course-info/state/course-info.query';
-import { CourseInfoService } from '../course-info/state/course-info.service';
+import { CourseInfoQuery, Data } from '@app/courses/state/course-info.query';
+import { CourseInfoService } from '../state/course-info.service';
 
 @Component({
   selector: 'course-card',
@@ -25,22 +25,17 @@ export class CourseCardComponent implements OnInit, OnDestroy {
     private courseInfoService: CourseInfoService,
     private courseInfoQuery: CourseInfoQuery,
     private universityDetailsQuery: UniversityDetailsQuery,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    const id = +(this.route.snapshot.paramMap.get('id') ?? 0);
-    this.courseInfoService.reset();
-    this.courseInfoService.get(id, this.course.id);
-
     this.ratingAverage$ = this.courseInfoQuery.getAverage(this.course.id);
 
     this.university$ = this.universityDetailsQuery.select();
   }
 
-  ngOnDestroy(): void {
-    this.courseInfoService.reset();
-  }
+  ngOnDestroy(): void {}
 
   averageColor(rating: number, item: string) {
     if (item === 'difficulty') {
@@ -51,5 +46,11 @@ export class CourseCardComponent implements OnInit, OnDestroy {
 
   capitalize(name: string) {
     return name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+  }
+
+  viewRatings() {
+    this.courseInfoService.reset();
+
+    this.router.navigate(['/courses', this.course.id, 'ratings']);
   }
 }
