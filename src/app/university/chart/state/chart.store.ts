@@ -11,7 +11,7 @@ export const emptyChartState = {
 } as ChartState;
 
 @Injectable({ providedIn: 'root' })
-@StoreConfig({ name: 'course-list', resettable: true })
+@StoreConfig({ name: 'university-rating-list', resettable: true })
 export class ChartStore extends Store<ChartState> {
   constructor() {
     super(createInitialState());

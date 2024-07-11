@@ -7,11 +7,11 @@ export interface SearchUniversityItemState {
 }
 
 export const initialState = {
-  items: []
-}
+  items: [],
+};
 
 @Injectable({ providedIn: 'root' })
-@StoreConfig({ name: 'course-list', resettable: true })
+@StoreConfig({ name: 'university-list', resettable: true })
 export class SearchUniversityStore extends Store<SearchUniversityItemState> {
   constructor() {
     super(createInitialState());

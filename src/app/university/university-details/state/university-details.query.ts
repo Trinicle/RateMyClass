@@ -5,6 +5,7 @@ import { UniversityDetails } from './university-details.model';
 
 @Injectable({ providedIn: 'root' })
 export class UniversityDetailsQuery extends Query<UniversityDetails> {
+  universityDetail$ = this.select();
   constructor(protected override store: UniversityDetailsStore) {
     super(store);
   }

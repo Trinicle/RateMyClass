@@ -1,0 +1,11 @@
+<general-navbar></general-navbar>
+<div class="bg-primary pt-20 h-screen">
+  <div class="ratings-container mx-auto">
+    <div class="p-6">
+      @if (courses$ | async; as courses) { @for (course of courses; track
+      $index) {
+      <course-card [course]="course"></course-card>
+      }}
+    </div>
+  </div>
+</div>

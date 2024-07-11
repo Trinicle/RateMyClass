@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { UniversityComponent } from './university/university.component';
 import { AddUniversityRatingComponent } from './add-university-rating/add-university-rating.component';
+import { CoursesComponent } from './courses/courses.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,11 @@ const routes: Routes = [
     path: 'university/:id',
     component: UniversityComponent,
     title: 'University',
+  },
+  {
+    path: 'university/:id/courses',
+    component: CoursesComponent,
+    title: 'Courses',
   },
   {
     path: 'add/university-rating/:id',
