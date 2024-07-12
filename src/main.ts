@@ -11,12 +11,6 @@ import {
   withInterceptorsFromDi,
 } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { persistState } from '@datorama/akita';
-import { UniversityDetailsComponent } from '@app/university/university-details/university-details.component';
-
-const storage = persistState();
-
-const providers = [{ provide: 'persistStorage', useValue: storage }];
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -24,6 +18,5 @@ bootstrapApplication(AppComponent, {
     provideHttpClient(withInterceptorsFromDi()),
     provideCharts(withDefaultRegisterables()),
     provideAnimationsAsync(),
-    providers,
   ],
 }).catch((err) => console.error(err));
