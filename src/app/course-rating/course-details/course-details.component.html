@@ -17,9 +17,21 @@
     </div>
   </div>
   <div class="mt-4">
+    <button
+      [routerLink]="['/university', university.id, 'courses']"
+      class="button-secondary px-10 py-2 mr-4"
+    >
+      Back
+    </button>
     @if (course$ | async; as course) {
     <button
-      [routerLink]="['/add/course-rating', course.id]"
+      [routerLink]="[
+        '/university',
+        university.id,
+        'course',
+        course.id,
+        'add-rating'
+      ]"
       class="button-secondary px-10 py-2"
     >
       Add Rating

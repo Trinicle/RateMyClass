@@ -50,7 +50,16 @@ export class CourseCardComponent implements OnInit, OnDestroy {
 
   viewRatings() {
     this.courseInfoService.reset();
+    const universityId = +(
+      this.route.snapshot.paramMap.get('universityId') ?? 0
+    );
 
-    this.router.navigate(['/courses', this.course.id, 'ratings']);
+    this.router.navigate([
+      '/university',
+      universityId,
+      'course',
+      this.course.id,
+      'ratings',
+    ]);
   }
 }

@@ -35,12 +35,13 @@ export class CourseDetailsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    const id = +(this.route.snapshot.paramMap.get('id') ?? 0);
+    const courseId = +(this.route.snapshot.paramMap.get('courseId') ?? 0);
+    const universityId = +(
+      this.route.snapshot.paramMap.get('universityId') ?? 0
+    );
     this.ratings$ = this.courseRatingQuery.getAverage();
     this.university$ = this.universityDetailsQuery.select();
-    this.university$.subscribe((university) => {
-      this.courseService.get(university.id, id);
-    });
+    this.courseService.get(universityId, courseId);
     this.course$ = this.coursesQuery.select();
   }
 

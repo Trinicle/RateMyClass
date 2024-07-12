@@ -1,10 +1,12 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { CourseInfoQuery } from '../../courses/state/course-info.query';
 import { CourseInfoService } from '../../courses/state/course-info.service';
 import { ChartConfiguration, ChartData, ChartEvent } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { ActivatedRoute } from '@angular/router';
 import { CourseRatingQuery } from '../state/course-rating.query';
+import { Observable } from 'rxjs';
+import { CourseRating } from '@app/courses/state/course-info.model';
 
 @Component({
   selector: 'course-chart',
@@ -21,10 +23,7 @@ export class ChartComponent implements OnInit, OnDestroy {
   chartDataColor: string[] = [];
   totalRatings: number = 1;
 
-  constructor(
-    private courseRatingQuery: CourseRatingQuery,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private courseRatingQuery: CourseRatingQuery) {}
 
   ngOnInit(): void {
     this.courseRatingQuery.getAverage().subscribe((data) => {

@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { CourseCardComponent } from './course-card/course-card.component';
 import { CourseInfoService } from './state/course-info.service';
 import { CourseInfoQuery } from './state/course-info.query';
+import { UniversityDetailsService } from '@app/university/university-details/state/university-details.service';
 
 @Component({
   selector: 'university-courses',
@@ -20,14 +21,15 @@ export class CoursesComponent implements OnInit, OnDestroy {
 
   constructor(
     private courseInfoService: CourseInfoService,
+    private universityDetailsService: UniversityDetailsService,
     private courseInfoQuery: CourseInfoQuery,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    const id = +(this.route.snapshot.paramMap.get('id') ?? 0);
+    const id = +(this.route.snapshot.paramMap.get('universityId') ?? 0);
     this.courseInfoService.get(id);
-
+    this.universityDetailsService.get(id);
     this.courses$ = this.courseInfoQuery.select((item) => item.courses);
   }
 

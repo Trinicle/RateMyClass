@@ -6,13 +6,13 @@ import { UniversityRatingPostRequest } from './add-university-rating.model';
   providedIn: 'root',
 })
 export class AddUniversityRatingService {
-  private url: string = 'http://localhost:5000/api/universities/';
+  private url: string = 'http://localhost:5000/api/universities';
 
   constructor(private http: HttpClient) {}
 
   post(id: number, template: UniversityRatingPostRequest) {
     this.http
-      .post<UniversityRatingPostRequest>(`${this.url}${id}/ratings`, template)
+      .post<UniversityRatingPostRequest>(`${this.url}/${id}/ratings`, template)
       .subscribe();
   }
 }

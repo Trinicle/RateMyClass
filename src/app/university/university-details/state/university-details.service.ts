@@ -25,7 +25,6 @@ export class UniversityDetailsService {
       })
       .pipe(
         map((response) => {
-          console.log('test');
           this.universityDetailsStore.update(
             response.body ?? emptyUniversityDetails
           );

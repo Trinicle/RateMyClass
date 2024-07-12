@@ -1,13 +1,19 @@
 <general-navbar></general-navbar>
-<div class="bg-primary pt-20 h-screen">
-  <div class="ratings-container mx-auto mt-6">
-    <div class="grid grid-cols-[4fr_6fr] gap-4 p-6 h-[250px]">
+<div class="bg-primary pt-20 h-full">
+  <div class="details-container mx-auto mt-6">
+    <div class="grid grid-cols-[4fr_6fr] gap-4 p-6 mb-2">
       <div>
         <course-details></course-details>
       </div>
-      <div>
+      <div class="h-[250px] max-m-[500px]">
         <course-chart></course-chart>
       </div>
+    </div>
+    <div class="p-6 ratings-container mx-auto">
+      @if (ratings$ | async; as ratings) { @for (rating of ratings; track
+      $index) {
+      <course-info-card [rating]="rating"></course-info-card>
+      } }
     </div>
   </div>
 </div>

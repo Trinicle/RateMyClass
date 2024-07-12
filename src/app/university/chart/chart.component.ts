@@ -32,7 +32,7 @@ export class ChartComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    const id = +(this.route.snapshot.paramMap.get('id') ?? 0);
+    const id = +(this.route.snapshot.paramMap.get('universityId') ?? 0);
     this.chartService.reset();
     this.chartService.get(id);
 

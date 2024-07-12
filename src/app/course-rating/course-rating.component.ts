@@ -3,28 +3,45 @@ import { GeneralNavbarComponent } from '@app/navbar/general-navbar/general-navba
 import { ChartComponent } from './chart/chart.component';
 import { CourseRatingService } from './state/course-rating.service';
 import { ActivatedRoute } from '@angular/router';
-import { UniversityDetailsQuery } from '@app/university/university-details/state/university-details.query';
 import { CourseDetailsComponent } from './course-details/course-details.component';
+import { UniversityDetailsService } from '@app/university/university-details/state/university-details.service';
+import { CourseRatingQuery } from './state/course-rating.query';
+import { Observable, of } from 'rxjs';
+import { CourseRating } from '@app/courses/state/course-info.model';
+import { CommonModule } from '@angular/common';
+import { CourseInfoCardComponent } from './course-info-card/course-info-card.component';
 
 @Component({
   selector: 'course-rating',
   standalone: true,
-  imports: [GeneralNavbarComponent, CourseDetailsComponent, ChartComponent],
+  imports: [
+    GeneralNavbarComponent,
+    CourseDetailsComponent,
+    ChartComponent,
+    CommonModule,
+    CourseInfoCardComponent,
+  ],
   templateUrl: './course-rating.component.html',
   styleUrl: './course-rating.component.scss',
 })
 export class CourseInfoComponent implements OnInit, OnDestroy {
+  ratings$: Observable<CourseRating[]> = of();
+
   constructor(
     private courseRatingService: CourseRatingService,
-    private universityDetailQuery: UniversityDetailsQuery,
+    private universityDetailsSerivce: UniversityDetailsService,
+    private courseRatingQuery: CourseRatingQuery,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.universityDetailQuery.select().subscribe((university) => {
-      const courseId = +(this.route.snapshot.paramMap.get('id') ?? 0);
-      this.courseRatingService.getRatings(university.id, courseId);
-    });
+    const universityId = +(
+      this.route.snapshot.paramMap.get('universityId') ?? 0
+    );
+    this.universityDetailsSerivce.get(universityId);
+    const courseId = +(this.route.snapshot.paramMap.get('courseId') ?? 0);
+    this.courseRatingService.getRatings(universityId, courseId);
+    this.ratings$ = this.courseRatingQuery.getRatings();
   }
 
   ngOnDestroy(): void {

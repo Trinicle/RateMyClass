@@ -1,1 +1,40 @@
-<p>course-info-card works!</p>
+<div class="card mb-6 text-white">
+  <div class="flex">
+    <div class="flex mr-4">
+      <div class="flex flex-col items-center mr-4">
+        <div class="mb-1">Difficulty</div>
+        <div
+          class="poppins-black text-3xl h-[72px] w-[72px] flex items-center justify-center rounded-lg text-black"
+          [ngStyle]="{
+            'background-color':
+              'hsl(' +
+              averageColor(rating.difficulty, 'difficulty') +
+              ', 100%, 45%, 1)'
+          }"
+        >
+          {{ rating.difficulty }}
+        </div>
+      </div>
+      <div class="flex flex-col items-center">
+        <div class="mb-1">Quality</div>
+        <div
+          class="poppins-black text-3xl h-[72px] w-[72px] flex items-center justify-center rounded-lg text-black"
+          [ngStyle]="{
+            'background-color':
+              'hsl(' +
+              averageColor(rating.quality, 'quality') +
+              ', 100%, 45%, 1)'
+          }"
+        >
+          {{ rating.quality }}
+        </div>
+      </div>
+    </div>
+    <div class="p-4 pt-0 w-full">
+      <div class="text-right mb-3 text-sm text-secondary">
+        {{ rating.date | dateFormat }}
+      </div>
+      <div class="mb-4">{{ rating.description }}</div>
+    </div>
+  </div>
+</div>

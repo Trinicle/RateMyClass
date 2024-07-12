@@ -15,11 +15,14 @@ export class CourseRatingService {
     private courseRatingStore: CourseRatingStore
   ) {}
 
-  getRatings(id: number, courseId: number) {
+  getRatings(universityId: number, courseId: number) {
     this.http
-      .get<CourseRating[]>(`${this.url}/${id}/courses/${courseId}/ratings`, {
-        observe: 'response',
-      })
+      .get<CourseRating[]>(
+        `${this.url}/${universityId}/courses/${courseId}/ratings`,
+        {
+          observe: 'response',
+        }
+      )
       .pipe(
         map((response) => {
           this.courseRatingStore.update({

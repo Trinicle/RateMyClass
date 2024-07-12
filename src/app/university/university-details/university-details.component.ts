@@ -24,7 +24,7 @@ export class UniversityDetailsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    const id = +(this.route.snapshot.paramMap.get('id') ?? 0);
+    const id = +(this.route.snapshot.paramMap.get('universityId') ?? 0);
     this.universityDetailsService.get(id);
 
     this.university$ = this.universityDetailsQuery.select();

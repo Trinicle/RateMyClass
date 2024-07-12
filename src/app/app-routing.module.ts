@@ -5,6 +5,7 @@ import { UniversityComponent } from './university/university.component';
 import { AddUniversityRatingComponent } from './add-university-rating/add-university-rating.component';
 import { CoursesComponent } from './courses/courses.component';
 import { CourseInfoComponent } from './course-rating/course-rating.component';
+import { AddCourseRatingComponent } from './add-course-rating/add-course-rating.component';
 
 const routes: Routes = [
   {
@@ -13,30 +14,30 @@ const routes: Routes = [
     title: 'Home',
   },
   {
-    path: 'university/:id',
+    path: 'university/:universityId',
     component: UniversityComponent,
     title: 'University',
   },
   {
-    path: 'university/:id/courses',
+    path: 'university/:universityId/courses',
     component: CoursesComponent,
     title: 'Courses',
   },
   {
-    path: 'courses/:id/ratings',
+    path: 'university/:universityId/course/:courseId/ratings',
     component: CourseInfoComponent,
     title: 'Course Ratings',
   },
   {
-    path: 'add/university-rating/:id',
+    path: 'university/:universityId/add-rating',
     component: AddUniversityRatingComponent,
     title: 'Add University Rating',
   },
-  // {
-  //   path: 'add/university-rating/:id',
-  //   component: AddUniversityRatingComponent,
-  //   title: 'Add University Rating',
-  // },
+  {
+    path: 'university/:universityId/course/:courseId/add-rating',
+    component: AddCourseRatingComponent,
+    title: 'Add Course Rating',
+  },
 
   {
     path: '',

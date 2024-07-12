@@ -11,6 +11,7 @@ import { RatingButtonComponent } from './rating-button/rating-button.component';
 import { UniversityRatingPostRequest } from './state/add-university-rating.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AddUniversityRatingService } from './state/add-university-rating.service';
+import { UniversityDetailsService } from '@app/university/university-details/state/university-details.service';
 
 @Component({
   selector: 'app-add-university-rating',
@@ -80,7 +81,7 @@ export class AddUniversityRatingComponent implements OnInit {
     const template = this.addUniversityRatingForm
       .value as UniversityRatingPostRequest;
 
-    const id = +(this.route.snapshot.paramMap.get('id') ?? 0);
+    const id = +(this.route.snapshot.paramMap.get('universityId') ?? 0);
 
     this.addUniversityRatingService.post(id, template);
 
