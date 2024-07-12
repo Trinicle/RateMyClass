@@ -17,6 +17,7 @@ export class SearchUniversityService {
 
   get(university: string = '', amount: number = 0) {
     if (!university) {
+      this.reset();
       return EMPTY;
     }
 

@@ -8,10 +8,7 @@ import { UniversityDetails } from '@app/university/university-details/state/univ
 import { UniversityDetailsQuery } from '@app/university/university-details/state/university-details.query';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CoursesQuery } from '@app/course-rating/course-details/state/courses.query';
-import {
-  Course,
-  emptyCourse,
-} from '@app/course-rating/course-details/state/courses.model';
+import { Course } from '@app/course-rating/course-details/state/courses.model';
 import { CoursesService } from './state/courses.service';
 
 @Component({

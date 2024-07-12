@@ -10,7 +10,7 @@ import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Observable, debounceTime, of, startWith, switchMap } from 'rxjs';
 import { SearchUniversityService } from './state/search-university.service';
 import { RouterLink } from '@angular/router';
-import { CommonModule,  } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { SearchUniversityQuery } from './state/search-university.query';
 import { SearchUniversityItemState } from './state/search-university.store';
 
@@ -28,14 +28,17 @@ export class SearchUniversityComponent implements OnInit, OnDestroy {
   universityForm = new FormGroup({
     university: new FormControl(''),
   });
-  universities$: Observable<SearchUniversityItemState> = of()
+  universities$: Observable<SearchUniversityItemState> = of();
   isInputFocused: boolean = false;
 
-  constructor(private searchUniversityService: SearchUniversityService, private searchUniversityQuery: SearchUniversityQuery) {}
+  constructor(
+    private searchUniversityService: SearchUniversityService,
+    private searchUniversityQuery: SearchUniversityQuery
+  ) {}
 
   ngOnInit(): void {
     this.universities$ = this.searchUniversityQuery.select();
- 
+
     this.universityForm.valueChanges
       .pipe(
         debounceTime(350),
@@ -45,7 +48,8 @@ export class SearchUniversityComponent implements OnInit, OnDestroy {
         switchMap(({ university }) =>
           this.searchUniversityService.get(university ?? '', 4)
         )
-      ).subscribe();
+      )
+      .subscribe();
   }
 
   ngOnDestroy(): void {
@@ -64,5 +68,4 @@ export class SearchUniversityComponent implements OnInit, OnDestroy {
   toggleInputFocused() {
     this.isInputFocused = !this.isInputFocused;
   }
-  
 }

@@ -37,4 +37,8 @@
   .input-primary {
     @apply bg-tertiary rounded-full py-5 px-7 text-2xl w-[40rem] focus:outline-none text-white
   }
+
+  .input-secondary {
+    @apply input-primary py-2 px-5 text-base w-[400px] rounded-xl
+  }
 }

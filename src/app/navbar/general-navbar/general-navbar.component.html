@@ -7,12 +7,30 @@
         >
       </div>
       <div>
-        <form>
+        @if (courses$ | async; as courses) {
+        <form [formGroup]="courseForm" #containerElement class="relative">
           <input
-            class="input-primary py-2 px-5 text-base w-[400px] rounded-xl"
+            formControlName="course"
+            type="text"
+            class="input-secondary"
+            [ngClass]="
+              courses.items.length > 0 && isInputFocused
+                ? 'rounded-b-none shadow-none'
+                : ''
+            "
             placeholder="Your Course"
           />
+          @if (courses.items.length > 0 && isInputFocused) {
+          <div class="absolute left-0 right-0 bg-slate-700 z-10 rounded-b-xl">
+            @for (course of courses.items; track $index; let last = $last) {
+            <div class="py-5 px-7 text-white">
+              <a (click)="onSearchCourse(course)">{{ course.name }}</a>
+            </div>
+            }
+          </div>
+          }
         </form>
+        }
       </div>
       <div></div>
       <div></div>
