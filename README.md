@@ -49,7 +49,6 @@ This application was developed in Angular v18 which requires node version 18^
    npm install
    ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
@@ -61,7 +60,6 @@ Run the command below to start the application locally on port 4200.
   npm run start
   ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
