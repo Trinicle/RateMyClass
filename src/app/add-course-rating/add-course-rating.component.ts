@@ -12,6 +12,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CourseRatingPostRequest } from './state/add-course-rating.model';
 import { RatingButtonComponent } from './rating-button/rating-button.component';
 
+interface ValidInput {
+  difficulty: boolean;
+  quality: boolean;
+  description: boolean;
+}
+
 @Component({
   selector: 'app-add-course-rating',
   standalone: true,
@@ -43,6 +49,12 @@ export class AddCourseRatingComponent implements OnInit {
       Validators.maxLength(500),
     ]),
   });
+
+  validinput: ValidInput = {
+    difficulty: true,
+    quality: true,
+    description: true,
+  };
 
   keys: string[] = [];
   numbers: number[] = [];
@@ -78,8 +90,16 @@ export class AddCourseRatingComponent implements OnInit {
 
   onSubmit() {
     if (!this.addCourseRatingForm.valid) {
+      Object.keys(this.addCourseRatingForm.controls).forEach((controlName) => {
+        if (this.addCourseRatingForm.get(controlName)?.invalid) {
+          this.validinput[controlName as keyof ValidInput] = false;
+        } else {
+          this.validinput[controlName as keyof ValidInput] = true;
+        }
+      });
       return;
     }
+
     const template = this.addCourseRatingForm.value as CourseRatingPostRequest;
 
     const universityId = +(
@@ -106,5 +126,9 @@ export class AddCourseRatingComponent implements OnInit {
     this.addCourseRatingForm.patchValue({
       takeAgain: recommend,
     });
+  }
+
+  getValidInput(key: string) {
+    return this.validinput[key as keyof ValidInput];
   }
 }

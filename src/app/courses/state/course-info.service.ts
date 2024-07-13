@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
 
-import { CourseRating, CourseWithRating } from './course-info.model';
+import { CourseWithRating } from './course-info.model';
 import { CourseInfoStore } from './course-info.store';
 
 @Injectable({

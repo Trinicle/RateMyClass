@@ -11,7 +11,20 @@ import { RatingButtonComponent } from './rating-button/rating-button.component';
 import { UniversityRatingPostRequest } from './state/add-university-rating.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AddUniversityRatingService } from './state/add-university-rating.service';
-import { UniversityDetailsService } from '@app/university/university-details/state/university-details.service';
+
+interface ValidInput {
+  quality: boolean;
+  location: boolean;
+  opportunities: boolean;
+  facilities: boolean;
+  internet: boolean;
+  food: boolean;
+  clubs: boolean;
+  social: boolean;
+  happiness: boolean;
+  safety: boolean;
+  description: boolean;
+}
 
 @Component({
   selector: 'app-add-university-rating',
@@ -88,6 +101,20 @@ export class AddUniversityRatingComponent implements OnInit {
   numbers: number[] = [];
   showGuidelines: boolean = false;
 
+  validinput: ValidInput = {
+    quality: true,
+    location: true,
+    opportunities: true,
+    facilities: true,
+    internet: true,
+    food: true,
+    clubs: true,
+    social: true,
+    happiness: true,
+    safety: true,
+    description: true,
+  };
+
   constructor(
     private addUniversityRatingService: AddUniversityRatingService,
     private route: ActivatedRoute,
@@ -117,6 +144,15 @@ export class AddUniversityRatingComponent implements OnInit {
 
   onSubmit() {
     if (!this.addUniversityRatingForm.valid) {
+      Object.keys(this.addUniversityRatingForm.controls).forEach(
+        (controlName) => {
+          if (this.addUniversityRatingForm.get(controlName)?.invalid) {
+            this.validinput[controlName as keyof ValidInput] = false;
+          } else {
+            this.validinput[controlName as keyof ValidInput] = true;
+          }
+        }
+      );
       return;
     }
     const template = this.addUniversityRatingForm
@@ -131,5 +167,9 @@ export class AddUniversityRatingComponent implements OnInit {
 
   getDescriptionLength() {
     return this.addUniversityRatingForm.controls['description'].value?.length;
+  }
+
+  getValidInput(key: string) {
+    return this.validinput[key as keyof ValidInput];
   }
 }

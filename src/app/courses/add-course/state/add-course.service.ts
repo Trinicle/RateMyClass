@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { addCoursePostRequest } from './add-course.model';
 import { HttpClient } from '@angular/common/http';
-import { CourseInfoQuery } from '@app/courses/state/course-info.query';
 import { CourseInfoStore } from '@app/courses/state/course-info.store';
 import { CourseWithRating } from '@app/courses/state/course-info.model';
 
@@ -13,7 +12,6 @@ export class AddCourseService {
 
   constructor(
     private http: HttpClient,
-    private courseInfoQuery: CourseInfoQuery,
     private courseInfoStore: CourseInfoStore
   ) {}
 
