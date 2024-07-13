@@ -75,4 +75,5 @@ Project Link: [https://github.com/Trinicle/RateMyCourse](https://github.com/Trin
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+[product-screenshot]: images/courseImage.png
 
