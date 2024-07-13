@@ -5,7 +5,7 @@ Welcome to RateMyCourse! This platform is designed to give students the flexabil
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]]
+![Product Name Screen Shot][product-screenshot]
 
 
 [API BACKEND](https://github.com/Trinicle/RateMyCourseAPI)
