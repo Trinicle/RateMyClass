@@ -1,0 +1,13 @@
+<div class="card border-secondary">
+  <div class="mb-4">Add Course</div>
+  <form [formGroup]="courseForm" class="mb-4">
+    <input
+      formControlName="name"
+      type="text"
+      class="input-secondary"
+      [ngClass]="!validForm ? 'outline-error' : ''"
+      placeholder="Course Name"
+    />
+  </form>
+  <button class="button-primary" (click)="toggleSubmit()">Submit</button>
+</div>

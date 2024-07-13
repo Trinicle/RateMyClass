@@ -25,6 +25,40 @@
           </div>
         </div>
         }
+        <div class="mb-6 card">
+          <div class="flex mb-6">
+            <div class="text-lg">Recommend</div>
+            <span class="text-red-600 leading-3 ml-1">*</span>
+          </div>
+          <div class="flex items-center justify-center">
+            <div class="flex justify-between w-40">
+              <div class="flex flex-col items-center">
+                <button
+                  class="button-primary py-5 mb-2 hover:bg-green-400"
+                  [ngStyle]="
+                    addCourseRatingForm.get('takeAgain')?.value
+                      ? { 'background-color': 'hsl(120, 100%, 45%, 1)' }
+                      : {}
+                  "
+                  (click)="toggleRecommend(true)"
+                ></button>
+                <div>Yes</div>
+              </div>
+              <div class="flex flex-col items-center">
+                <button
+                  class="button-primary py-5 mb-2 hover:bg-red-400"
+                  [ngStyle]="
+                    addCourseRatingForm.get('takeAgain')?.value === false
+                      ? { 'background-color': 'hsl(0, 100%, 45%, 1)' }
+                      : {}
+                  "
+                  (click)="toggleRecommend(false)"
+                ></button>
+                <div>No</div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="card mb-6">
           <div class="text-lg mb-4 flex">
             <div class="">Write a review</div>

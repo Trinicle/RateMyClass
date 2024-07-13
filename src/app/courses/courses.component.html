@@ -2,6 +2,9 @@
 <div class="bg-primary pt-20 h-screen overflow-auto">
   <div class="ratings-container mx-auto">
     <div class="p-6">
+      <button class="button-secondary py-2 mb-6 w-full" (click)="openDialog()">
+        Add Course
+      </button>
       @if (courses$ | async; as courses) { @for (course of courses; track
       $index) {
       <course-card [course]="course"></course-card>

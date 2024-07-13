@@ -16,7 +16,7 @@
               'hsl(' + averageColor(item.value, item.key) + ', 100%, 45%, 1)'
           }"
         >
-          {{ item.value.toFixed(1) }}
+          {{ item.value === 0 ? "N/A" : item.value.toFixed(1) }}
         </div>
       </div>
       } }
@@ -29,10 +29,12 @@
       <div class="text-tertiary">{{ university.name }}</div>
       }
       <div class="text-tertiary">
-        <span class="text-secondary font-bold"
-          >{{ (rating.takeAgain * 100).toFixed(0) }}%</span
-        >
-        of people recommend this course
+        <span class="text-secondary font-bold">{{
+          rating.difficulty === 0
+            ? "N/A"
+            : (rating.takeAgain * 100).toFixed(1) +
+              "% people recommend this course"
+        }}</span>
       </div>
     </div>
   </div>

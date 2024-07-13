@@ -27,17 +27,58 @@ import { UniversityDetailsService } from '@app/university/university-details/sta
 })
 export class AddUniversityRatingComponent implements OnInit {
   addUniversityRatingForm = new FormGroup({
-    quality: new FormControl(0, [Validators.min(1), Validators.max(5)]),
-    location: new FormControl(0, [Validators.min(1), Validators.max(5)]),
-    opportunities: new FormControl(0, [Validators.min(1), Validators.max(5)]),
-    facilities: new FormControl(0, [Validators.min(1), Validators.max(5)]),
-    internet: new FormControl(0, [Validators.min(1), Validators.max(5)]),
-    food: new FormControl(0, [Validators.min(1), Validators.max(5)]),
-    clubs: new FormControl(0, [Validators.min(1), Validators.max(5)]),
-    social: new FormControl(0, [Validators.min(1), Validators.max(5)]),
-    happiness: new FormControl(0, [Validators.min(1), Validators.max(5)]),
-    safety: new FormControl(0, [Validators.min(1), Validators.max(5)]),
+    quality: new FormControl(0, [
+      Validators.required,
+      Validators.min(1),
+      Validators.max(5),
+    ]),
+    location: new FormControl(0, [
+      Validators.required,
+      Validators.min(1),
+      Validators.max(5),
+    ]),
+    opportunities: new FormControl(0, [
+      Validators.required,
+      Validators.min(1),
+      Validators.max(5),
+    ]),
+    facilities: new FormControl(0, [
+      Validators.required,
+      Validators.min(1),
+      Validators.max(5),
+    ]),
+    internet: new FormControl(0, [
+      Validators.required,
+      Validators.min(1),
+      Validators.max(5),
+    ]),
+    food: new FormControl(0, [
+      Validators.required,
+      Validators.min(1),
+      Validators.max(5),
+    ]),
+    clubs: new FormControl(0, [
+      Validators.required,
+      Validators.min(1),
+      Validators.max(5),
+    ]),
+    social: new FormControl(0, [
+      Validators.required,
+      Validators.min(1),
+      Validators.max(5),
+    ]),
+    happiness: new FormControl(0, [
+      Validators.required,
+      Validators.min(1),
+      Validators.max(5),
+    ]),
+    safety: new FormControl(0, [
+      Validators.required,
+      Validators.min(1),
+      Validators.max(5),
+    ]),
     description: new FormControl('', [
+      Validators.required,
       Validators.minLength(1),
       Validators.maxLength(500),
     ]),

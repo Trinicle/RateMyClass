@@ -38,7 +38,6 @@ const routes: Routes = [
     component: AddCourseRatingComponent,
     title: 'Add Course Rating',
   },
-
   {
     path: '',
     redirectTo: '/home',

@@ -26,9 +26,19 @@ import { RatingButtonComponent } from './rating-button/rating-button.component';
 })
 export class AddCourseRatingComponent implements OnInit {
   addCourseRatingForm = new FormGroup({
-    quality: new FormControl(0, [Validators.min(1), Validators.max(5)]),
-    difficulty: new FormControl(0, [Validators.min(1), Validators.max(5)]),
+    quality: new FormControl(0, [
+      Validators.required,
+      Validators.min(1),
+      Validators.max(5),
+    ]),
+    difficulty: new FormControl(0, [
+      Validators.required,
+      Validators.min(1),
+      Validators.max(5),
+    ]),
+    takeAgain: new FormControl(true),
     description: new FormControl('', [
+      Validators.required,
       Validators.minLength(1),
       Validators.maxLength(500),
     ]),
@@ -46,6 +56,7 @@ export class AddCourseRatingComponent implements OnInit {
 
   ngOnInit(): void {
     this.keys = Object.keys(this.addCourseRatingForm.controls);
+    this.keys.pop();
     this.keys.pop();
 
     this.numbers = new Array(this.keys.length).fill(0);
@@ -89,5 +100,11 @@ export class AddCourseRatingComponent implements OnInit {
 
   getDescriptionLength() {
     return this.addCourseRatingForm.controls['description'].value?.length;
+  }
+
+  toggleRecommend(recommend: boolean) {
+    this.addCourseRatingForm.patchValue({
+      takeAgain: recommend,
+    });
   }
 }
